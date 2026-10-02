@@ -91,7 +91,6 @@ Run from the repository root. Each script writes the JSON named in the last colu
 | Sec. 5.7: excluding stretched clips (+0.006, ρ = 1.00) | see notes | `label_and_corpus_audit.json` → `step_3_no_stretched_reeval` |
 | Sec. 6.4: method-label metadata | `python scripts/sec64_method_label_validation.py` (fps, resolution, codec, encoder) | `task3_method_label_validation.json`; level and FLOAT/Real3DPortrait comparison in `label_and_corpus_audit.json` → `step_2_method_label_verification` |
 | Fig. 2: per-method ROC | `python scripts/fig2_roc_curves.py` | `figures/roc_curves.pdf` |
-| Fig. 3: example traces | `python scripts/fig3_waveform_comparison.py` | see notes |
 
 ### Provenance notes
 
@@ -102,7 +101,6 @@ Run from the repository root. Each script writes the JSON named in the last colu
 - **Missing source videos in the 30 fps run.** In our runs, `data/videos/fake` held a working copy in which the source videos of identities id53–id61 were no longer present (2,779 clips, recorded as `missing_source` in `fps_confound_control.json`). Their native-rate waveforms had already been extracted. With the full release these clips will be found, so 30 fps corpus counts will differ.
 - **DeepFakesON-Phys.** `table3_deepfakeson_phys.py` runs an **ONNX conversion of the released `DeepFakesON-Phys_CelebDF_V2.h5` weights** with onnxruntime on CPU. The preprocessing is **re-implemented** following the official `vid_to_deepframes_rawframes.py`: 36×36 face, DeepFrames from normalised temporal differences, RawFrames from normalised appearance, video score = mean frame score. One difference is that the Haar-cascade face box is detected on the first frame and reused for all frames, with a centre-crop fallback. **The script used for the h5 → ONNX conversion was not found and is not included.** Obtain the weights from the official DeepFakesON-Phys repository; we do not redistribute them. The run scored 100 real and 3,171 fake test-identity videos from the `videos/` working copy. Per-video scores were not saved.
 - **Fig. 2.** The curves are 5-seed mean ROC curves, computed by retraining inside the script. The AUC values in the legend are fixed constants taken from Table 4.
-- **Fig. 3.** `fig3_waveform_comparison.py` is the trace-plotting script found with this project. It does **not** reproduce the exact submitted figure, which uses different example clips and styling; that version's source was not found. Treat it as illustrative only.
 - **Fig. 1** (pipeline diagram) is not included because it contains a frame from the dataset.
 - **Path edits only.** Relative to the code that produced the results, the scripts were changed only to make paths configurable (`--data-root`, `--out-dir`, `--rhythmformer-dir`, `--dfp-dir`), to drop the face-swap / face-reenactment / YouTube-real branches from the extraction script, and to rename files. The scripts were not re-run end to end after these edits. They were checked statically: they compile, `--help` works, and referenced paths exist.
 
