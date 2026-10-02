@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-run_toeplitz_vit.py — Toeplitz Vision Transformer for rPPG deepfake detection.
+sec35_toeplitz_vit.py — Toeplitz Vision Transformer for rPPG deepfake detection.
 
 STEP 0: Prior implementation found in src/run_experiments.py (ToeplitzViT class).
         Reused verbatim.

@@ -1,12 +1,12 @@
 """
-run_combined_retrain_video_level.py
+table3_main_results.py
 
 Retrains 1D ResNet, 1D CNN, and 1D Transformer with the exact configuration
-from run_phase2_full59.py (no augmentation, same HPs, same split).
+from table4_table5_phase2.py (no augmentation, same HPs, same split).
 Saves every checkpoint. Computes window-level and video-level (mean pool) AUC
 on the 18-identity eval set for all three architectures from one code path.
 
-Canonical HPs from run_phase2_full59.py:
+Canonical HPs from table4_table5_phase2.py:
   ResNet:      lr=0.001,  wd=0.0005, dropout=0.5
   Transformer: lr=0.001,  wd=0.0001, dropout=0.3
   CNN:         lr=0.0005, wd=0.001,  dropout=0.3   (NOT lr=1e-3 — confirmed from source)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-run_fps_confound_control.py — fps confound verification for paper submission.
+sec57_fps_confound_control.py — fps confound verification for paper submission.
 
 Steps 1-5 per spec. Every number computed fresh from disk in this session.
 Output: data/results/fps_confound_control.json

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-extract_waveforms_30fps.py — fps-normalized waveform extraction.
+sec57_extract_waveforms_30fps.py — fps-normalized waveform extraction.
 
 Resamples every fake video to 30 fps via nearest-neighbour frame selection
 against wall-clock time before RhythmFormer inference.  Real videos are already

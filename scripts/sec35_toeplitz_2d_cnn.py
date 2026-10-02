@@ -1,5 +1,5 @@
 """
-run_task1_toeplitz_2d_cnn.py — Toeplitz 2D CNN for rPPG deepfake detection.
+sec35_toeplitz_2d_cnn.py — Toeplitz 2D CNN for rPPG deepfake detection.
 
 Each 160-sample z-scored waveform is converted to a 160×160 symmetric Toeplitz matrix:
     T[i,j] = x[|i-j|]   (x is 0-indexed, so T is determined by x[0..159])

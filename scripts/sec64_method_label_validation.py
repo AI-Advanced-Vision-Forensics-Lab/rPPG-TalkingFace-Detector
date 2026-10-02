@@ -1,5 +1,5 @@
 """
-run_task3_method_label_validation.py — Method-label internal consistency check.
+sec64_method_label_validation.py — Method-label internal consistency check.
 
 For each of the seven generator buckets (AniTalker, EDTalk, EchoMimic, FLOAT,
 IP_LAP, Real3DPortrait, SadTalker), reports per-video technical metadata:

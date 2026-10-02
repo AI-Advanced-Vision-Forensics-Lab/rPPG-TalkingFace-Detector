@@ -1,5 +1,5 @@
 """
-run_task2_video_level_auc.py — Video-level AUC for the 1D ResNet (RhythmFormer features).
+sec57_task2_retrain_checkpoints.py — Video-level AUC for the 1D ResNet (RhythmFormer features).
 
 The canonical window-level result is AUC=0.822 (18-id) / 0.826 (9-id).
 Here we aggregate per-window scores to source-video level and recompute AUC/EER.

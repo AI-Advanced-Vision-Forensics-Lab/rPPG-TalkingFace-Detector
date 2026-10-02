@@ -1,5 +1,5 @@
 """
-build_split_30fps.py — rebuild the identity split on the fps-normalised waveforms.
+sec57_build_split_30fps.py — rebuild the identity split on the fps-normalised waveforms.
 
 Real waveforms:  reused from data/waveforms/real/  (30 fps, no change)
 Fake waveforms:  taken from data/waveforms/CelebDF_30fps/TalkingFace/{method}/

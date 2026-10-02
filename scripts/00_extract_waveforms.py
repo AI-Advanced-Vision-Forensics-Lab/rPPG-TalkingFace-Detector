@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-extract_waveforms_celebdf.py — rPPG waveform extraction for Celeb-DF-v3.
+00_extract_waveforms.py — rPPG waveform extraction for Celeb-DF-v3.
 
 Fake videos (Celeb-synthesis):
   - One waveform per video, early-stop at 160 frames

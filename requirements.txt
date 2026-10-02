@@ -11,5 +11,6 @@ matplotlib==3.10.9
 mediapipe==0.10.35
 opencv-python-headless==4.13.0.92
 timm==0.9.16            # required by RhythmFormer
-# DeepFakesON-Phys baseline only (version used was not recorded):
+# DeepFakesON-Phys baseline only. Unpinned: the version used was not recorded and
+# onnxruntime is not installed on our analysis server. The ONNX model was converted with tf2onnx 1.17.0.
 onnxruntime
