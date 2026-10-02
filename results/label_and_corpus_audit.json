@@ -1,0 +1,314 @@
+{
+  "experiment": "label_and_corpus_audit",
+  "step_1_missing_source": {
+    "status": "OK",
+    "n_missing_source": 2779,
+    "missing_source_by_method": {
+      "AniTalker": 450,
+      "EDTalk": 365,
+      "EchoMimic": 385,
+      "FLOAT": 450,
+      "IP_LAP": 435,
+      "Real3DPortrait": 244,
+      "SadTalker": 450
+    },
+    "missing_source_by_split": {
+      "train": 2173,
+      "test": 295,
+      "val": 311
+    },
+    "missing_source_by_method_x_split": {
+      "AniTalker": {
+        "train": 350,
+        "test": 50,
+        "val": 50
+      },
+      "EDTalk": {
+        "test": 45,
+        "train": 275,
+        "val": 45
+      },
+      "EchoMimic": {
+        "test": 50,
+        "train": 285,
+        "val": 50
+      },
+      "FLOAT": {
+        "train": 350,
+        "test": 50,
+        "val": 50
+      },
+      "IP_LAP": {
+        "train": 335,
+        "test": 50,
+        "val": 50
+      },
+      "Real3DPortrait": {
+        "val": 16,
+        "train": 228
+      },
+      "SadTalker": {
+        "train": 350,
+        "test": 50,
+        "val": 50
+      }
+    },
+    "identity_prefixes_affected": [
+      "id53",
+      "id54",
+      "id55",
+      "id56",
+      "id57",
+      "id58",
+      "id59",
+      "id60",
+      "id61"
+    ],
+    "1b_source_video_exists_on_disk": 0,
+    "1b_source_video_absent_from_disk": 2779,
+    "1b_native_waveform_npy_exists": 2779,
+    "1b_native_waveform_absent": 0,
+    "1c_path_template_native": "data/videos/fake/{method}/{stem}.mp4",
+    "1c_path_template_30fps": "data/videos/fake/{method}/{stem}.mp4",
+    "1c_templates_identical": true,
+    "1c_failure_cause": "sources for id53-id61 deleted after native extraction; not a path bug",
+    "1d_fake_video_mtime_earliest": "Wed Jun 17 20:21:20 2026",
+    "1d_fake_video_mtime_latest": "Wed Jun 17 20:22:49 2026",
+    "1d_native_waveform_mtime_earliest": "Wed Jul  1 20:34:04 2026",
+    "1d_native_waveform_mtime_latest": "Wed Jul  1 20:50:46 2026",
+    "1d_id53_61_waveform_mtime_earliest": "Wed Jul  1 20:46:34 2026",
+    "1d_id53_61_waveform_mtime_latest": "Wed Jul  1 20:48:41 2026",
+    "1d_interpretation": "Source videos for id0-52 on disk since Jun 17 2026; native waveforms created Jul 1 2026 (including id53-61 which existed then); id53-61 source videos subsequently deleted. Sources absent from disk now.",
+    "1e_case": "B",
+    "1e_explanation": "Sources for id53-61 were present at native extraction time (Jul 1 2026), waveforms were produced for all 2779 entries, sources were subsequently deleted. Native result is NOT currently reproducible from source for id53-61 identities."
+  },
+  "step_2_method_label_verification": {
+    "status": "OK",
+    "2a_assignment_mechanism": "build_split_full59.py scans data/waveforms/CelebDF/TalkingFace/{method}/*.npy where 'method' is the directory name. Labels are derived from directory names, not from a global positional ordering.",
+    "2a_structure": "SEVEN INDEPENDENT per-method decisions \u2014 each method has its own dedicated subdirectory; the label is the directory name.",
+    "2a_evidential_implication": "A correct fingerprint match for one generator confirms that directory's identity. A misnamed source directory would mislabel all waveforms in it.",
+    "2b_cross_tab": {
+      "AniTalker": {
+        "fps": 25.0,
+        "resolution": "256x256",
+        "codec": "h264",
+        "n_sampled": 50
+      },
+      "EDTalk": {
+        "fps": 25.0,
+        "resolution": "256x256",
+        "codec": "h264",
+        "n_sampled": 50
+      },
+      "EchoMimic": {
+        "fps": 24.0,
+        "resolution": "512x512",
+        "codec": "h264",
+        "n_sampled": 50
+      },
+      "FLOAT": {
+        "fps": 25.0,
+        "resolution": "512x512",
+        "codec": "h264",
+        "n_sampled": 50
+      },
+      "IP_LAP": {
+        "fps": 25.0,
+        "resolution": "256x256",
+        "codec": "h264",
+        "n_sampled": 50
+      },
+      "Real3DPortrait": {
+        "fps": 25.0,
+        "resolution": "512x512",
+        "codec": "h264",
+        "n_sampled": 50
+      },
+      "SadTalker": {
+        "fps": 25.0,
+        "resolution": "256x256",
+        "codec": "h264",
+        "n_sampled": 50
+      }
+    },
+    "2b_echomimic_is_exactly_24fps_set": true,
+    "2b_real3dportrait_and_float_both_25fps_512x512": true,
+    "2b_anitalker_edtalk_iplap_sadtalker_all_25fps_256x256": true,
+    "2b_no_label_conflicts_with_metadata_group": true,
+    "2c_extended_metadata": {
+      "AniTalker": {
+        "level": 13,
+        "format_encoder": "Lavf61.1.100",
+        "stream_encoder": "Lavc61.3.100 libx264"
+      },
+      "EDTalk": {
+        "level": 20,
+        "format_encoder": "Lavf58.76.100",
+        "stream_encoder": ""
+      },
+      "EchoMimic": {
+        "level": 30,
+        "format_encoder": "mixed: Lavf58.29.100/Lavf61.1.100",
+        "stream_encoder": "mixed"
+      },
+      "FLOAT": {
+        "level": 30,
+        "format_encoder": "Lavf58.76.100",
+        "stream_encoder": ""
+      },
+      "IP_LAP": {
+        "level": 13,
+        "format_encoder": "Lavf58.76.100",
+        "stream_encoder": ""
+      },
+      "Real3DPortrait": {
+        "level": 30,
+        "format_encoder": "Lavf58.76.100",
+        "stream_encoder": ""
+      },
+      "SadTalker": {
+        "level": 13,
+        "format_encoder": "Lavf60.16.100",
+        "stream_encoder": ""
+      }
+    },
+    "2c_subgroups": {
+      "group_24fps_512x512": {
+        "members": [
+          "EchoMimic"
+        ],
+        "n_subgroups": 1
+      },
+      "group_25fps_512x512": {
+        "members": [
+          "FLOAT",
+          "Real3DPortrait"
+        ],
+        "n_subgroups": 1,
+        "note": "both level=30, Lavf58.76.100, no stream encoder \u2014 indistinguishable by extended metadata"
+      },
+      "group_25fps_256x256": {
+        "members": [
+          "AniTalker",
+          "EDTalk",
+          "IP_LAP",
+          "SadTalker"
+        ],
+        "n_subgroups": 4,
+        "note": "AniTalker by stream encoder; EDTalk by level=20; IP_LAP vs SadTalker by format encoder Lavf58.76.100 vs Lavf60.16.100"
+      }
+    },
+    "2d_cardinality_disambiguation": {
+      "FLOAT_vs_Real3DPortrait": "Both share same encoder fingerprint. Total waveform cardinalities: FLOAT=2950, Real3DPortrait=2744. These differ, so cardinality could in principle distinguish them \u2014 but labels already come from directory names, not counts.",
+      "note": "Cardinality disambiguation is circular given directory-derived labels."
+    },
+    "2e_determination": {
+      "uniquely_determined_by_metadata": [
+        "EchoMimic",
+        "AniTalker",
+        "EDTalk",
+        "IP_LAP",
+        "SadTalker"
+      ],
+      "n_uniquely_determined": 5,
+      "residual_swap_group": [
+        "FLOAT",
+        "Real3DPortrait"
+      ],
+      "residual_swap_note": "FLOAT and Real3DPortrait share identical (fps=25, resolution=512x512, codec=h264, level=30, Lavf58.76.100, no stream encoder). They cannot be separated by any measured metadata. Their total cardinalities differ (2950 vs 2744) but that does not break the ambiguity without an external ground-truth anchor."
+    }
+  },
+  "step_3_no_stretched_reeval": {
+    "status": "OK",
+    "3a_stretched_clips_total": 2225,
+    "3a_identification_method": "too_short entries in data/waveforms/CelebDF_30fps/extraction_log.csv; all 2225 have matching native waveforms confirming they were linspace-stretched in native run",
+    "3a_by_method_all_splits": {
+      "AniTalker": 297,
+      "EDTalk": 324,
+      "EchoMimic": 228,
+      "FLOAT": 318,
+      "IP_LAP": 421,
+      "Real3DPortrait": 319,
+      "SadTalker": 318
+    },
+    "3a_by_split": {
+      "test": 346,
+      "train": 1560,
+      "val": 319
+    },
+    "3a_real_videos_stretched": 0,
+    "3a_real_videos_stretched_note": "Real videos use stride-60 sliding windows. The linspace path activates on partial last windows (< 160 frames). This applies to both classes but is particularly relevant for fakes because ALL waveforms from short fake videos are stretched (the entire fake is a single stretched window), whereas for reals only the final partial window of a multi-window video is stretched.",
+    "3b_checkpoint_source": "data/checkpoints/task2_resnet/ (5 seeds; same architecture, data, and hyperparams as phase2 combined model; retrained for task2 but produces mean_auc_18id=0.8256 vs 0.8215 in full59_combined_model.json \u2014 ~0.4% difference due to retraining stochasticity)",
+    "3b_n_eval_windows_all": 6855,
+    "3b_n_eval_stretched_excluded": 665,
+    "3b_n_eval_non_stretched": 6190,
+    "3b_seed_aucs": {
+      "42": 0.8292,
+      "7": 0.8265,
+      "123": 0.8406,
+      "999": 0.834,
+      "2024": 0.8265
+    },
+    "3b_mean_auc_non_stretched": 0.8314,
+    "3b_std_auc_non_stretched": 0.0054,
+    "3b_mean_eer_non_stretched": 0.247,
+    "3b_baseline_with_stretched": 0.8256,
+    "3b_delta_vs_baseline": 0.0058,
+    "3c_per_generator_auc_non_stretched": {
+      "AniTalker": 0.8746,
+      "EDTalk": 0.9155,
+      "EchoMimic": 0.7664,
+      "FLOAT": 0.798,
+      "IP_LAP": 0.6234,
+      "Real3DPortrait": 0.9457,
+      "SadTalker": 0.8969
+    },
+    "3c_per_generator_auc_native": {
+      "AniTalker": 0.8663,
+      "EDTalk": 0.9029,
+      "EchoMimic": 0.7577,
+      "FLOAT": 0.7874,
+      "IP_LAP": 0.6173,
+      "Real3DPortrait": 0.9367,
+      "SadTalker": 0.8895
+    },
+    "3c_n_fake_eval_non_stretched_per_method": {
+      "AniTalker": 806,
+      "EDTalk": 777,
+      "EchoMimic": 818,
+      "FLOAT": 800,
+      "IP_LAP": 755,
+      "Real3DPortrait": 738,
+      "SadTalker": 800
+    },
+    "3c_n_stretched_excluded_from_eval_per_method": {
+      "AniTalker": 89,
+      "EDTalk": 93,
+      "EchoMimic": 67,
+      "FLOAT": 95,
+      "IP_LAP": 130,
+      "Real3DPortrait": 96,
+      "SadTalker": 95
+    },
+    "3c_spearman_rho_native_vs_non_stretched": 1.0,
+    "3c_spearman_p": 0.0,
+    "3d_retrained_without_stretched": "NOT RUN (conditional on step 3b/3c completion and GPU time; step 3b/3c complete but retraining was not performed in this session)"
+  },
+  "provenance": {
+    "timestamp_utc": "2026-08-27T20:05:12.507431Z",
+    "gpu": "Tesla T4",
+    "input_files": [
+      "data/waveforms/CelebDF_30fps/extraction_log.csv",
+      "data/dataset_split_full59.csv",
+      "data/results/full59_combined_model.json",
+      "data/results/split_full59_summary.json",
+      "data/results/task3_method_label_validation.json",
+      "data/waveforms/CelebDF/TalkingFace/AniTalker",
+      "data/videos/fake",
+      "data/checkpoints/task2_resnet",
+      "src/build_split_full59.py",
+      "src/extract_waveforms_celebdf.py",
+      "src/extract_waveforms_30fps.py"
+    ]
+  }
+}

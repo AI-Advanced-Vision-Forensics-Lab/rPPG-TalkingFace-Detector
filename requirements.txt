@@ -1,6 +1,8 @@
-torch==2.7.1+cu118
-torchaudio==2.7.1+cu118
-torchvision==0.22.1+cu118
+# Python 3.10. Versions are those of the environment used for the experiments.
+# torch/torchvision were installed as the CUDA 11.8 build:
+#   pip install torch==2.7.1 torchvision==0.22.1 --index-url https://download.pytorch.org/whl/cu118
+torch==2.7.1
+torchvision==0.22.1
 numpy==2.2.6
 scipy==1.15.3
 pandas==2.3.3
@@ -8,3 +10,6 @@ scikit-learn==1.7.2
 matplotlib==3.10.9
 mediapipe==0.10.35
 opencv-python-headless==4.13.0.92
+timm==0.9.16            # required by RhythmFormer
+# DeepFakesON-Phys baseline only (version used was not recorded):
+onnxruntime

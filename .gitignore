@@ -1,0 +1,32 @@
+# Data and anything derived from it (Celeb-DF++ is not redistributed)
+data/
+*.mp4
+*.avi
+*.mov
+*.npy
+*.npz
+# Model weights and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.hdf5
+*.onnx
+*.tflite
+*.task
+RhythmFormer/
+DeepFakesON-Phys/
+# Environments and secrets
+.env
+.env.*
+.venv/
+venv/
+envs/
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# Run logs (results/logs/ is curated and tracked)
+*.log
+nohup*.out
+!results/logs/*.log

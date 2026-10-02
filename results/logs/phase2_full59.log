@@ -1,0 +1,524 @@
+Device: cuda
+Split:  data/dataset_split_full59.csv
+
+Loading split ...
+Loading waveforms into memory ...
+  Loaded 22650 windows in 18.4s
+  Train real: 1675 ✓  |  Eval real: 696 ✓  |  Eval ids: 18 ✓
+
+  Train: 1675 real + 14120 fake  (all generators combined)
+  Eval (18-id): 696 real + 6159 fake
+  Test (9-id):  396 real + 3466 fake
+
+======================================================================
+  PHASE (a)+(b): Combined model — all 7 generators
+======================================================================
+
+[1D ResNet]  lr=0.001 wd=0.0005 dropout=0.5  params=240,161
+  Train: 1675 real + 14120 fake
+  Eval (18-id): 696 real + 6159 fake  ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56']
+  Eval (9-id test): 396 real + 3466 fake  ids: ['id0', 'id4', 'id6', 'id11', 'id13', 'id16', 'id23', 'id27', 'id54']
+  seed=  42
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8218 EER=26.2%  |  9-id AUC=0.8233 EER=25.3%
+         AniTalker        AUC=0.8780 EER=19.8%  (696r+895f)
+         EDTalk           AUC=0.9001 EER=18.5%  (696r+870f)
+         EchoMimic        AUC=0.7335 EER=32.5%  (696r+885f)
+         FLOAT            AUC=0.7886 EER=28.6%  (696r+895f)
+         IP_LAP           AUC=0.6180 EER=41.8%  (696r+885f)
+         Real3DPortrait   AUC=0.9401 EER=13.6%  (696r+834f)
+         SadTalker        AUC=0.9009 EER=17.5%  (696r+895f)
+         Per-identity AUC: mean=0.8222 std=0.0464  min=0.7452 max=0.9212
+  seed=   7
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8243 EER=24.7%  |  9-id AUC=0.8300 EER=24.0%
+  seed= 123
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8296 EER=24.6%  |  9-id AUC=0.8328 EER=25.0%
+  seed= 999
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8161 EER=26.0%  |  9-id AUC=0.8230 EER=25.3%
+  seed=2024
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8159 EER=26.1%  |  9-id AUC=0.8221 EER=26.2%
+  → 1D ResNet: 18-id 0.8215±0.0052 EER=25.5%  |  9-id 0.8262±0.0043 EER=25.1%  [4.9min]
+  Saved → full59_combined_model.json, full59_per_generator_breakdown.json
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+
+[Transformer]  lr=0.001 wd=0.0001 dropout=0.3  params=69,121
+  Train: 1675 real + 14120 fake
+  Eval (18-id): 696 real + 6159 fake  ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56']
+  Eval (9-id test): 396 real + 3466 fake  ids: ['id0', 'id4', 'id6', 'id11', 'id13', 'id16', 'id23', 'id27', 'id54']
+  seed=  42
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8109 EER=26.9%  |  9-id AUC=0.8111 EER=26.5%
+         AniTalker        AUC=0.8712 EER=22.0%  (696r+895f)
+         EDTalk           AUC=0.8863 EER=19.5%  (696r+870f)
+         EchoMimic        AUC=0.7324 EER=32.8%  (696r+885f)
+         FLOAT            AUC=0.7679 EER=30.2%  (696r+895f)
+         IP_LAP           AUC=0.6234 EER=40.9%  (696r+885f)
+         Real3DPortrait   AUC=0.9117 EER=17.9%  (696r+834f)
+         SadTalker        AUC=0.8893 EER=20.1%  (696r+895f)
+  seed=   7
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8030 EER=28.0%  |  9-id AUC=0.8072 EER=27.9%
+  seed= 123
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8001 EER=27.5%  |  9-id AUC=0.8047 EER=26.9%
+  seed= 999
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8090 EER=26.7%  |  9-id AUC=0.8107 EER=25.8%
+  seed=2024
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8077 EER=26.9%  |  9-id AUC=0.8158 EER=26.2%
+  → Transformer: 18-id 0.8062±0.0040 EER=27.2%  |  9-id 0.8099±0.0038 EER=26.7%  [4.1min]
+  Saved → full59_combined_model.json, full59_per_generator_breakdown.json
+
+[1D CNN]  lr=0.0005 wd=0.001 dropout=0.3  params=35,617
+  Train: 1675 real + 14120 fake
+  Eval (18-id): 696 real + 6159 fake  ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56']
+  Eval (9-id test): 396 real + 3466 fake  ids: ['id0', 'id4', 'id6', 'id11', 'id13', 'id16', 'id23', 'id27', 'id54']
+  seed=  42
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8098 EER=26.6%  |  9-id AUC=0.8079 EER=26.8%
+         AniTalker        AUC=0.8606 EER=21.4%  (696r+895f)
+         EDTalk           AUC=0.8828 EER=19.3%  (696r+870f)
+         EchoMimic        AUC=0.7583 EER=31.6%  (696r+885f)
+         FLOAT            AUC=0.7865 EER=29.7%  (696r+895f)
+         IP_LAP           AUC=0.5697 EER=45.9%  (696r+885f)
+         Real3DPortrait   AUC=0.9170 EER=15.9%  (696r+834f)
+         SadTalker        AUC=0.8996 EER=17.7%  (696r+895f)
+  seed=   7
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8138 EER=26.2%  |  9-id AUC=0.8120 EER=26.7%
+  seed= 123
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8102 EER=26.7%  |  9-id AUC=0.8104 EER=26.0%
+  seed= 999
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8058 EER=26.2%  |  9-id AUC=0.7983 EER=27.3%
+  seed=2024
+    pos_weight = 1675/14120 = 0.118626
+         18-id AUC=0.8071 EER=26.7%  |  9-id AUC=0.8051 EER=26.8%
+  → 1D CNN: 18-id 0.8093±0.0028 EER=26.4%  |  9-id 0.8067±0.0048 EER=26.7%  [1.9min]
+  Saved → full59_combined_model.json, full59_per_generator_breakdown.json
+
+======================================================================
+  Phase (a) Summary — Combined model (59-id full corpus)
+======================================================================
+  Architecture     18-id AUC  18-id EER   9-id AUC  9-id EER
+  --------------------------------------------------------------
+  1D ResNet       0.8215±0.0052     25.5%  0.8262±0.0043    25.1%
+  Transformer     0.8062±0.0040     27.2%  0.8099±0.0038    26.7%
+  1D CNN          0.8093±0.0028     26.4%  0.8067±0.0048    26.7%
+
+  ResNet seed=42 per-identity AUC (18 ids):
+      id0: 0.8878
+      id4: 0.8388
+      id6: 0.7768
+      id8: 0.8307
+     id11: 0.8054
+     id12: 0.8268
+     id13: 0.8010
+     id16: 0.8776
+     id19: 0.8187
+     id22: 0.7999
+     id23: 0.8229
+     id27: 0.8608
+     id34: 0.9212
+     id42: 0.7452
+     id44: 0.7810
+     id52: 0.7687
+     id54: 0.7635
+     id56: 0.8726
+  mean=0.8222  std=0.0464
+
+  Phase (b) Summary — ResNet per-generator breakdown (combined model)
+  -----------------------------------------------------------------
+  Generator            mean AUC     std  mean EER
+  AniTalker           0.8663    ±0.0130  21.6%
+  EDTalk              0.9029    ±0.0028  18.0%
+  EchoMimic           0.7577    ±0.0143  30.4%
+  FLOAT               0.7874    ±0.0051  28.7%
+  IP_LAP              0.6173    ±0.0089  41.1%
+  Real3DPortrait      0.9367    ±0.0091  14.4%
+  SadTalker           0.8895    ±0.0214  19.0%
+
+======================================================================
+  PHASE (c): Isolated per-method training
+======================================================================
+
+=================================================================
+  METHOD: AniTalker
+=================================================================
+  Train: 1675 real + 2055 fake
+  Eval:  696 real + 895 fake  (18 ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56'])
+  [1D ResNet]  lr=0.001 wd=0.0005 dropout=0.5  params=240,161
+    seed=  42
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9195  EER=16.0%
+    seed=   7
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9250  EER=16.1%
+    seed= 123
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9162  EER=16.0%
+    seed= 999
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9311  EER=14.9%
+    seed=2024
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9258  EER=15.7%
+  → AniTalker [1D ResNet]:  0.9235±0.0052  EER=15.7%  Δ(iso-combined)=+0.0573
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+  [Transformer]  lr=0.001 wd=0.0001 dropout=0.3  params=69,121
+    seed=  42
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9079  EER=18.2%
+    seed=   7
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9139  EER=17.4%
+    seed= 123
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9083  EER=17.2%
+    seed= 999
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9135  EER=16.8%
+    seed=2024
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9066  EER=17.5%
+  → AniTalker [Transformer]:  0.9100±0.0030  EER=17.4%
+
+=================================================================
+  METHOD: EDTalk
+=================================================================
+  Train: 1675 real + 1995 fake
+  Eval:  696 real + 870 fake  (18 ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56'])
+  [1D ResNet]  lr=0.001 wd=0.0005 dropout=0.5  params=240,161
+    seed=  42
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9518  EER=11.8%
+    seed=   7
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9533  EER=11.2%
+    seed= 123
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9581  EER=10.4%
+    seed= 999
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9615  EER=11.0%
+    seed=2024
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9523  EER=11.5%
+  → EDTalk [1D ResNet]:  0.9554±0.0038  EER=11.2%  Δ(iso-combined)=+0.0525
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+  [Transformer]  lr=0.001 wd=0.0001 dropout=0.3  params=69,121
+    seed=  42
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9463  EER=13.5%
+    seed=   7
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9490  EER=12.6%
+    seed= 123
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9473  EER=12.2%
+    seed= 999
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9487  EER=12.3%
+    seed=2024
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/1995 = 0.839599
+           AUC=0.9456  EER=13.8%
+  → EDTalk [Transformer]:  0.9474±0.0013  EER=12.9%
+
+=================================================================
+  METHOD: EchoMimic
+=================================================================
+  Train: 1675 real + 2000 fake
+  Eval:  696 real + 885 fake  (18 ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56'])
+  [1D ResNet]  lr=0.001 wd=0.0005 dropout=0.5  params=240,161
+    seed=  42
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8731  EER=20.2%
+    seed=   7
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8836  EER=18.5%
+    seed= 123
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8815  EER=19.5%
+    seed= 999
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8826  EER=20.2%
+    seed=2024
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8780  EER=20.5%
+  → EchoMimic [1D ResNet]:  0.8798±0.0038  EER=19.8%  Δ(iso-combined)=+0.1220
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+  [Transformer]  lr=0.001 wd=0.0001 dropout=0.3  params=69,121
+    seed=  42
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8418  EER=23.8%
+    seed=   7
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8445  EER=23.2%
+    seed= 123
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8327  EER=25.1%
+    seed= 999
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8448  EER=23.8%
+    seed=2024
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2000 = 0.837500
+           AUC=0.8451  EER=22.9%
+  → EchoMimic [Transformer]:  0.8418±0.0047  EER=23.8%
+
+=================================================================
+  METHOD: FLOAT
+=================================================================
+  Train: 1675 real + 2055 fake
+  Eval:  696 real + 895 fake  (18 ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56'])
+  [1D ResNet]  lr=0.001 wd=0.0005 dropout=0.5  params=240,161
+    seed=  42
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.8224  EER=26.1%
+    seed=   7
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.8326  EER=24.8%
+    seed= 123
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.8320  EER=25.3%
+    seed= 999
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.8269  EER=25.8%
+    seed=2024
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.8287  EER=25.5%
+  → FLOAT [1D ResNet]:  0.8285±0.0037  EER=25.5%  Δ(iso-combined)=+0.0411
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+  [Transformer]  lr=0.001 wd=0.0001 dropout=0.3  params=69,121
+    seed=  42
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.8155  EER=26.0%
+    seed=   7
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.7806  EER=28.0%
+    seed= 123
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.8059  EER=27.2%
+    seed= 999
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.8052  EER=27.6%
+    seed=2024
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.7931  EER=27.8%
+  → FLOAT [Transformer]:  0.8001±0.0120  EER=27.3%
+
+=================================================================
+  METHOD: IP_LAP
+=================================================================
+  Train: 1675 real + 2050 fake
+  Eval:  696 real + 885 fake  (18 ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56'])
+  [1D ResNet]  lr=0.001 wd=0.0005 dropout=0.5  params=240,161
+    seed=  42
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7100  EER=33.0%
+    seed=   7
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7041  EER=35.6%
+    seed= 123
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7094  EER=34.1%
+    seed= 999
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7184  EER=33.6%
+    seed=2024
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7061  EER=35.0%
+  → IP_LAP [1D ResNet]:  0.7096±0.0049  EER=34.3%  Δ(iso-combined)=+0.0923
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+  [Transformer]  lr=0.001 wd=0.0001 dropout=0.3  params=69,121
+    seed=  42
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7436  EER=32.8%
+    seed=   7
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7414  EER=32.8%
+    seed= 123
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7445  EER=32.7%
+    seed= 999
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7347  EER=32.5%
+    seed=2024
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2050 = 0.817073
+           AUC=0.7434  EER=32.6%
+  → IP_LAP [Transformer]:  0.7415±0.0035  EER=32.7%
+
+=================================================================
+  METHOD: Real3DPortrait
+=================================================================
+  Train: 1675 real + 1910 fake
+  Eval:  696 real + 834 fake  (18 ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56'])
+  [1D ResNet]  lr=0.001 wd=0.0005 dropout=0.5  params=240,161
+    seed=  42
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9874  EER=5.3%
+    seed=   7
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9883  EER=5.5%
+    seed= 123
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9868  EER=5.5%
+    seed= 999
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9884  EER=5.2%
+    seed=2024
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9867  EER=5.9%
+  → Real3DPortrait [1D ResNet]:  0.9875±0.0007  EER=5.5%  Δ(iso-combined)=+0.0509
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+  [Transformer]  lr=0.001 wd=0.0001 dropout=0.3  params=69,121
+    seed=  42
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9817  EER=6.3%
+    seed=   7
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9754  EER=7.8%
+    seed= 123
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9785  EER=6.5%
+    seed= 999
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9828  EER=6.6%
+    seed=2024
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/1910 = 0.876963
+           AUC=0.9820  EER=7.0%
+  → Real3DPortrait [Transformer]:  0.9801±0.0028  EER=6.9%
+
+=================================================================
+  METHOD: SadTalker
+=================================================================
+  Train: 1675 real + 2055 fake
+  Eval:  696 real + 895 fake  (18 ids: ['id0', 'id4', 'id6', 'id8', 'id11', 'id12', 'id13', 'id16', 'id19', 'id22', 'id23', 'id27', 'id34', 'id42', 'id44', 'id52', 'id54', 'id56'])
+  [1D ResNet]  lr=0.001 wd=0.0005 dropout=0.5  params=240,161
+    seed=  42
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9430  EER=13.2%
+    seed=   7
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9478  EER=13.2%
+    seed= 123
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9449  EER=14.0%
+    seed= 999
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9477  EER=12.9%
+    seed=2024
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9490  EER=12.9%
+  → SadTalker [1D ResNet]:  0.9465±0.0022  EER=13.2%  Δ(iso-combined)=+0.0569
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+  [Transformer]  lr=0.001 wd=0.0001 dropout=0.3  params=69,121
+    seed=  42
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9479  EER=11.6%
+    seed=   7
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9373  EER=13.5%
+    seed= 123
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9400  EER=13.1%
+    seed= 999
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9402  EER=13.2%
+    seed=2024
+<site-packages>/torch/nn/modules/transformer.py:382: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+    pos_weight = 1675/2055 = 0.815085
+           AUC=0.9385  EER=13.3%
+  → SadTalker [Transformer]:  0.9408±0.0037  EER=12.9%
+
+======================================================================
+  Phase (c) Summary — Isolated per-method
+======================================================================
+  Method               ResNet AUC  R-EER    Tfmr AUC  T-EER  Δ(iso-comb)
+  ------------------------------------------------------------------------
+  AniTalker           0.9235±0.0052  15.7%  0.9100±0.0030  17.4%  +0.0573
+  EDTalk              0.9554±0.0038  11.2%  0.9474±0.0013  12.9%  +0.0525
+  EchoMimic           0.8798±0.0038  19.8%  0.8418±0.0047  23.8%  +0.1220
+  FLOAT               0.8285±0.0037  25.5%  0.8001±0.0120  27.3%  +0.0411
+  IP_LAP              0.7096±0.0049  34.3%  0.7415±0.0035  32.7%  +0.0923
+  Real3DPortrait      0.9875±0.0007   5.5%  0.9801±0.0028   6.9%  +0.0509
+  SadTalker           0.9465±0.0022  13.2%  0.9408±0.0037  12.9%  +0.0569
+
+Total runtime: 26.1 min
+Saved → full59_combined_model.json, full59_per_generator_breakdown.json, full59_per_method_isolated.json

@@ -1,0 +1,57 @@
+{
+  "experiment": "deepfakeson_phys_baseline",
+  "model": "DeepFakesON-Phys_CelebDF_V2 (arXiv:2010.00400)",
+  "eval_set": "9-identity test split (TEST_IDS)",
+  "test_ids": [
+    "id0",
+    "id11",
+    "id13",
+    "id16",
+    "id23",
+    "id27",
+    "id4",
+    "id54",
+    "id6"
+  ],
+  "n_real_videos": 100,
+  "n_fake_videos": 3171,
+  "overall_auc": 0.5758,
+  "per_method": {
+    "AniTalker": {
+      "n_videos": 455,
+      "mean_score": 0.7535284540492619,
+      "auc_vs_real": 0.6452
+    },
+    "EchoMimic": {
+      "n_videos": 445,
+      "mean_score": 0.7502972840467204,
+      "auc_vs_real": 0.6389
+    },
+    "EDTalk": {
+      "n_videos": 445,
+      "mean_score": 0.7388723091571159,
+      "auc_vs_real": 0.6285
+    },
+    "FLOAT": {
+      "n_videos": 455,
+      "mean_score": 0.7949365599981988,
+      "auc_vs_real": 0.7159
+    },
+    "IP_LAP": {
+      "n_videos": 445,
+      "mean_score": 0.6789353736619295,
+      "auc_vs_real": 0.5233
+    },
+    "Real3DPortrait": {
+      "n_videos": 471,
+      "mean_score": 0.6601937988045925,
+      "auc_vs_real": 0.499
+    },
+    "SadTalker": {
+      "n_videos": 455,
+      "mean_score": 0.5938405126763753,
+      "auc_vs_real": 0.3842
+    }
+  },
+  "runtime_min": 20.8
+}

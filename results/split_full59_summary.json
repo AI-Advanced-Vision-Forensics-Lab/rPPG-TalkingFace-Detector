@@ -1,0 +1,117 @@
+{
+  "n_real": 2371,
+  "n_fake": 20279,
+  "n_real_train": 1675,
+  "n_real_val": 300,
+  "n_real_test": 396,
+  "n_identities": 59,
+  "train_ids": [
+    "id1",
+    "id2",
+    "id3",
+    "id5",
+    "id7",
+    "id9",
+    "id10",
+    "id17",
+    "id20",
+    "id21",
+    "id24",
+    "id25",
+    "id26",
+    "id28",
+    "id29",
+    "id30",
+    "id31",
+    "id32",
+    "id33",
+    "id35",
+    "id36",
+    "id37",
+    "id38",
+    "id39",
+    "id40",
+    "id41",
+    "id43",
+    "id45",
+    "id46",
+    "id47",
+    "id48",
+    "id49",
+    "id50",
+    "id51",
+    "id53",
+    "id55",
+    "id57",
+    "id58",
+    "id59",
+    "id60",
+    "id61"
+  ],
+  "val_ids": [
+    "id8",
+    "id12",
+    "id19",
+    "id22",
+    "id34",
+    "id42",
+    "id44",
+    "id52",
+    "id56"
+  ],
+  "test_ids": [
+    "id0",
+    "id4",
+    "id6",
+    "id11",
+    "id13",
+    "id16",
+    "id23",
+    "id27",
+    "id54"
+  ],
+  "per_method": {
+    "AniTalker": {
+      "train": 2055,
+      "val": 390,
+      "test": 505,
+      "total": 2950
+    },
+    "EDTalk": {
+      "train": 1995,
+      "val": 380,
+      "test": 490,
+      "total": 2865
+    },
+    "EchoMimic": {
+      "train": 2000,
+      "val": 390,
+      "test": 495,
+      "total": 2885
+    },
+    "FLOAT": {
+      "train": 2055,
+      "val": 390,
+      "test": 505,
+      "total": 2950
+    },
+    "IP_LAP": {
+      "train": 2050,
+      "val": 390,
+      "test": 495,
+      "total": 2935
+    },
+    "Real3DPortrait": {
+      "train": 1910,
+      "val": 363,
+      "test": 471,
+      "total": 2744
+    },
+    "SadTalker": {
+      "train": 2055,
+      "val": 390,
+      "test": 505,
+      "total": 2950
+    }
+  }
+}

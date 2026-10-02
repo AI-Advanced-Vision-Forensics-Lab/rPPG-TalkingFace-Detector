@@ -1,0 +1,316 @@
+{
+  "experiment": "combined_retrain_video_level",
+  "timestamp": "2026-08-28T00:01:26Z",
+  "device": "cuda",
+  "seeds": [
+    42,
+    7,
+    123,
+    999,
+    2024
+  ],
+  "eval_set": "18-identity (val+test merged)",
+  "augmentation": "none \u2014 matched to run_phase2_full59.py which has no augmentation",
+  "hp_source": "run_phase2_full59.py BEST_CONFIGS (verified from source)",
+  "note_on_cnn_hp": "CNN lr=5e-4 wd=1e-3, NOT lr=1e-3 wd=5e-4; task description mixed them up",
+  "window_counts": {
+    "eval_real_windows": 696,
+    "eval_fake_windows": 6159
+  },
+  "source_video_count_check": {
+    "expected_real": 173,
+    "expected_fake": 6159,
+    "actual_real": 173,
+    "actual_fake": 6159,
+    "match_expected": true,
+    "identical_across_all_seeds_and_archs": true
+  },
+  "architectures": {
+    "1D ResNet": {
+      "status": "OK",
+      "ckpt_dir": "data/checkpoints/combined_retrain/1D_ResNet",
+      "ckpt_paths_written": [
+        "data/checkpoints/combined_retrain/1D_ResNet/seed42.pt",
+        "data/checkpoints/combined_retrain/1D_ResNet/seed7.pt",
+        "data/checkpoints/combined_retrain/1D_ResNet/seed123.pt",
+        "data/checkpoints/combined_retrain/1D_ResNet/seed999.pt",
+        "data/checkpoints/combined_retrain/1D_ResNet/seed2024.pt"
+      ],
+      "params": 240161,
+      "lr": 0.001,
+      "wd": 0.0005,
+      "dropout": 0.5,
+      "seeds": [
+        {
+          "seed": 42,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_ResNet/seed42.pt",
+          "window_auc_18id": 0.8295,
+          "window_eer_18id": 0.2501,
+          "video_auc_mean_18id": 0.8444,
+          "video_eer_mean_18id": 0.2419,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 7,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_ResNet/seed7.pt",
+          "window_auc_18id": 0.8275,
+          "window_eer_18id": 0.2528,
+          "video_auc_mean_18id": 0.8485,
+          "video_eer_mean_18id": 0.2265,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 123,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_ResNet/seed123.pt",
+          "window_auc_18id": 0.8316,
+          "window_eer_18id": 0.2485,
+          "video_auc_mean_18id": 0.8485,
+          "video_eer_mean_18id": 0.2298,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 999,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_ResNet/seed999.pt",
+          "window_auc_18id": 0.8226,
+          "window_eer_18id": 0.2515,
+          "video_auc_mean_18id": 0.8368,
+          "video_eer_mean_18id": 0.2306,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 2024,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_ResNet/seed2024.pt",
+          "window_auc_18id": 0.8181,
+          "window_eer_18id": 0.2502,
+          "video_auc_mean_18id": 0.8337,
+          "video_eer_mean_18id": 0.2432,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        }
+      ],
+      "window_auc_18id_per_seed": [
+        0.8295,
+        0.8275,
+        0.8316,
+        0.8226,
+        0.8181
+      ],
+      "window_auc_18id_mean": 0.8259,
+      "window_auc_18id_std": 0.0049,
+      "video_auc_mean_pool_18id_per_seed": [
+        0.8444,
+        0.8485,
+        0.8485,
+        0.8368,
+        0.8337
+      ],
+      "video_auc_mean_pool_18id_mean": 0.8424,
+      "video_auc_mean_pool_18id_std": 0.0061,
+      "video_eer_mean_pool_18id_mean": 0.2344,
+      "comparison_vs_prev_reported": {
+        "prev_window_auc": 0.8215,
+        "new_window_auc": 0.8259,
+        "delta": 0.0044,
+        "within_0.005": true
+      },
+      "runtime_min": 4.89
+    },
+    "Transformer": {
+      "status": "OK",
+      "ckpt_dir": "data/checkpoints/combined_retrain/Transformer",
+      "ckpt_paths_written": [
+        "data/checkpoints/combined_retrain/Transformer/seed42.pt",
+        "data/checkpoints/combined_retrain/Transformer/seed7.pt",
+        "data/checkpoints/combined_retrain/Transformer/seed123.pt",
+        "data/checkpoints/combined_retrain/Transformer/seed999.pt",
+        "data/checkpoints/combined_retrain/Transformer/seed2024.pt"
+      ],
+      "params": 69121,
+      "lr": 0.001,
+      "wd": 0.0001,
+      "dropout": 0.3,
+      "seeds": [
+        {
+          "seed": 42,
+          "ckpt_path": "data/checkpoints/combined_retrain/Transformer/seed42.pt",
+          "window_auc_18id": 0.8109,
+          "window_eer_18id": 0.2693,
+          "video_auc_mean_18id": 0.8264,
+          "video_eer_mean_18id": 0.2673,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 7,
+          "ckpt_path": "data/checkpoints/combined_retrain/Transformer/seed7.pt",
+          "window_auc_18id": 0.803,
+          "window_eer_18id": 0.2799,
+          "video_auc_mean_18id": 0.8083,
+          "video_eer_mean_18id": 0.2715,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 123,
+          "ckpt_path": "data/checkpoints/combined_retrain/Transformer/seed123.pt",
+          "window_auc_18id": 0.8001,
+          "window_eer_18id": 0.2751,
+          "video_auc_mean_18id": 0.7946,
+          "video_eer_mean_18id": 0.2964,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 999,
+          "ckpt_path": "data/checkpoints/combined_retrain/Transformer/seed999.pt",
+          "window_auc_18id": 0.809,
+          "window_eer_18id": 0.2672,
+          "video_auc_mean_18id": 0.8227,
+          "video_eer_mean_18id": 0.2537,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 2024,
+          "ckpt_path": "data/checkpoints/combined_retrain/Transformer/seed2024.pt",
+          "window_auc_18id": 0.8077,
+          "window_eer_18id": 0.2693,
+          "video_auc_mean_18id": 0.8246,
+          "video_eer_mean_18id": 0.244,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        }
+      ],
+      "window_auc_18id_per_seed": [
+        0.8109,
+        0.803,
+        0.8001,
+        0.809,
+        0.8077
+      ],
+      "window_auc_18id_mean": 0.8061,
+      "window_auc_18id_std": 0.004,
+      "video_auc_mean_pool_18id_per_seed": [
+        0.8264,
+        0.8083,
+        0.7946,
+        0.8227,
+        0.8246
+      ],
+      "video_auc_mean_pool_18id_mean": 0.8153,
+      "video_auc_mean_pool_18id_std": 0.0122,
+      "video_eer_mean_pool_18id_mean": 0.2666,
+      "comparison_vs_prev_reported": {
+        "prev_window_auc": 0.806,
+        "new_window_auc": 0.8061,
+        "delta": 0.0001,
+        "within_0.005": true
+      },
+      "runtime_min": 4.1
+    },
+    "1D CNN": {
+      "status": "OK",
+      "ckpt_dir": "data/checkpoints/combined_retrain/1D_CNN",
+      "ckpt_paths_written": [
+        "data/checkpoints/combined_retrain/1D_CNN/seed42.pt",
+        "data/checkpoints/combined_retrain/1D_CNN/seed7.pt",
+        "data/checkpoints/combined_retrain/1D_CNN/seed123.pt",
+        "data/checkpoints/combined_retrain/1D_CNN/seed999.pt",
+        "data/checkpoints/combined_retrain/1D_CNN/seed2024.pt"
+      ],
+      "params": 35617,
+      "lr": 0.0005,
+      "wd": 0.001,
+      "dropout": 0.3,
+      "seeds": [
+        {
+          "seed": 42,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_CNN/seed42.pt",
+          "window_auc_18id": 0.811,
+          "window_eer_18id": 0.2659,
+          "video_auc_mean_18id": 0.8571,
+          "video_eer_mean_18id": 0.2192,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 7,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_CNN/seed7.pt",
+          "window_auc_18id": 0.8124,
+          "window_eer_18id": 0.2653,
+          "video_auc_mean_18id": 0.8372,
+          "video_eer_mean_18id": 0.2365,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 123,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_CNN/seed123.pt",
+          "window_auc_18id": 0.8108,
+          "window_eer_18id": 0.2677,
+          "video_auc_mean_18id": 0.8545,
+          "video_eer_mean_18id": 0.224,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 999,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_CNN/seed999.pt",
+          "window_auc_18id": 0.8053,
+          "window_eer_18id": 0.2656,
+          "video_auc_mean_18id": 0.8425,
+          "video_eer_mean_18id": 0.2273,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        },
+        {
+          "seed": 2024,
+          "ckpt_path": "data/checkpoints/combined_retrain/1D_CNN/seed2024.pt",
+          "window_auc_18id": 0.8094,
+          "window_eer_18id": 0.2629,
+          "video_auc_mean_18id": 0.8362,
+          "video_eer_mean_18id": 0.2362,
+          "n_src_real": 173,
+          "n_src_fake": 6159
+        }
+      ],
+      "window_auc_18id_per_seed": [
+        0.811,
+        0.8124,
+        0.8108,
+        0.8053,
+        0.8094
+      ],
+      "window_auc_18id_mean": 0.8098,
+      "window_auc_18id_std": 0.0024,
+      "video_auc_mean_pool_18id_per_seed": [
+        0.8571,
+        0.8372,
+        0.8545,
+        0.8425,
+        0.8362
+      ],
+      "video_auc_mean_pool_18id_mean": 0.8455,
+      "video_auc_mean_pool_18id_std": 0.0087,
+      "video_eer_mean_pool_18id_mean": 0.2286,
+      "comparison_vs_prev_reported": {
+        "prev_window_auc": 0.809,
+        "new_window_auc": 0.8098,
+        "delta": 0.0008,
+        "within_0.005": true
+      },
+      "runtime_min": 1.94
+    }
+  },
+  "provenance": {
+    "split_csv": "data/dataset_split_full59.csv",
+    "ckpt_root": "data/checkpoints/combined_retrain",
+    "source_script": "run_combined_retrain_video_level.py",
+    "architecture_source": "run_phase2_full59.py (class definitions copied verbatim)"
+  },
+  "total_runtime_min": 10.92
+}

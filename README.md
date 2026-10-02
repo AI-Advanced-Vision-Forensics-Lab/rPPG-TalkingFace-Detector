@@ -1,184 +1,122 @@
-# Physiological Signals as a Forensic Modality for Talking-Face Deepfake Detection
+# PulseGuard: rPPG-Derived Temporal Signals as a Forensic Modality for Talking-Face Deepfake Detection
 
-**Othmane Harraq, Tamer Aldwairi — Temple University**
+**Othmane Harraq, Tamer Aldwairi** — Temple University
+
+Code and result files for the revised PulseGuard paper. RhythmFormer extracts a 160-sample rPPG waveform from each face window. Lightweight 1D classifiers then separate real from talking-face (TF) videos in the TF subset of Celeb-DF++, using an identity-disjoint split.
+
+| | Window AUC | Video AUC (mean-pooled) |
+|---|---|---|
+| 1D ResNet (240K) | 0.826 ± 0.005 | 0.842 ± 0.006 |
+| 1D CNN (36K) | 0.810 ± 0.002 | 0.846 ± 0.009 |
+| Transformer (69K) | 0.806 ± 0.004 | 0.815 ± 0.012 |
+| DeepFakesON-Phys (reproduction) | — | 0.576 |
+
+The numbers are means over 5 seeds on the 18 validation + test identities. The DeepFakesON-Phys row uses only the 9 test identities.
+
+> **Earlier version.** The code for the first version of this work (17,500 fakes, AUC 0.806) is preserved under the git tag [`v1-17500`](../../tree/v1-17500). The current code uses the full 20,279-video TF corpus and supersedes it.
 
 ---
 
-## Overview
-
-This repository contains the code and results for our rPPG-based talking-face deepfake detection framework. We show that remote photoplethysmography (rPPG) is a uniquely motivated detection modality for talking-face (TF) synthesis, where, unlike face-swap, no real video substrate exists from which physiological characteristics can be inherited.
-
-Our 1D ResNet achieves **AUC 0.806 ± 0.003** on the TF subset of Celeb-DF++ under a strict subject-independent protocol, placing it within 2.4 points of the best published general-purpose detector (Effort, ICML 2025) while operating exclusively on the physiological channel.
-
----
-
-## Repository Structure
+## Repository layout
 
 ```
-├── src/
-│   ├── extract_waveforms.py          
-│   ├── build_split.py                
-│   ├── run_experiments.py            
-│   ├── per_method_isolated.py       
-│   ├── generate_roc_curves.py       
-│   └── generate_waveform_comparison.py
-├── figures/
-│   ├── roc_curves.pdf
-│   └── waveform_comparison.pdf
-├── results/
-│   └── per_method_isolated.json 
-└── requirements.txt
+scripts/        one script per table / figure / section (see "Reproducing the paper")
+results/        the result JSON files behind every number in the paper (absolute paths removed)
+results/logs/   phase2_full59.log, source of the per-identity numbers in Sec. 6.2
+splits/         identity_split.csv (59 identities -> train/val/test) and corpus_full59.csv
+figures/        roc_curves.pdf (Fig. 2)
 ```
 
----
+## Setup
 
-## Requirements
-
-Python 3.10+. Install dependencies:
+Python 3.10 and an NVIDIA GPU are required for extraction and training.
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt          # see the note in requirements.txt about the CUDA build of torch
+git clone https://github.com/zizheng-guo/RhythmFormer.git
+git -C RhythmFormer checkout 7c9cea2     # the commit used for all extractions
 ```
 
-> **GPU note:** The `requirements.txt` lists the CUDA 11.8 build of PyTorch. If you need a different CUDA version or CPU-only, install PyTorch separately first:
-> ```bash
-> # CUDA 11.8
-> pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu118
-> # CPU only
-> pip install torch torchvision
-> ```
-
-> **OpenCV note:** `opencv-python-headless` is used (no GUI dependency). Do not install `opencv-python` or `opencv-contrib-python` alongside it as they conflict.
-
----
+- **RhythmFormer checkpoint.** Download `UBFC_cross_RhythmFormer.pth` from the RhythmFormer authors and place it at `RhythmFormer/PreTrainedModels/UBFC_cross_RhythmFormer.pth`. We do not redistribute it.
+- **Face detector.** The MediaPipe BlazeFace short-range model (`blaze_face_short_range.tflite`) is downloaded automatically into `--data-root` on first use.
+- **ffprobe.** Required for Sec. 5.7 and Sec. 6.4 (`apt install ffmpeg`).
+- **Arguments.** Every script takes `--data-root` (default `./data`) and `--out-dir` (default `<data-root>/results`). Extraction scripts also take `--rhythmformer-dir` (default `./RhythmFormer`).
 
 ## Dataset
 
-We use the **TalkingFace subset of Celeb-DF++** (Li et al., 2025):
-- 590 real videos from 59 celebrity identities
-- 17,500 TF-forged videos across 7 synthesis methods (2,500 per method): AniTalker, EchoMimic, EDTalk, FLOAT, IP-LAP, Real3DPortrait, SadTalker
+We use the TalkingFace subset of **Celeb-DF++** (Li et al., 2025): 590 real videos of 59 celebrities and 20,279 TF videos from seven generators. Request access from the authors at <https://github.com/OUC-VAS/Celeb-DF-PP>. The dataset is released for non-commercial academic research under the authors' terms of use.
 
-Dataset access: [https://github.com/OUC-VAS/Celeb-DF-PP](https://github.com/OUC-VAS/Celeb-DF-PP)
+**This repository contains no videos, frames, face crops, extracted waveforms or model weights.** You need your own copy of the dataset to run anything.
 
-> **Note:** Celeb-DF++ requires signing a license agreement. We cannot redistribute the data.
+Expected layout under `--data-root`:
 
----
-
-## RhythmFormer
-
-rPPG waveforms are extracted using **RhythmFormer** (Zou et al., 2024) with the `UBFC_cross` checkpoint.
-
-Download the checkpoint from the official RhythmFormer repository and place it at:
 ```
-checkpoints/UBFC_cross.pth
-```
-
-RhythmFormer repo: https://github.com/zizheng-guo/rhythmformer
-
-> **Note:** The RhythmFormer checkpoint belongs to the original authors and cannot be redistributed here.
-
----
-
-## Reproduction Steps
-
-### Step 1 — Extract rPPG waveforms
-
-```bash
-python src/extract_waveforms.py \
-  --video_dir /path/to/CelebDF/TalkingFace \
-  --real_dir /path/to/CelebDF/Celeb-real \
-  --output_dir data/waveforms \
-  --checkpoint checkpoints/UBFC_cross.pth
+data/
+├── Celeb-DF-v3/                      # the Celeb-DF++ release as unpacked
+│   ├── Celeb-real/*.mp4
+│   └── Celeb-synthesis/TalkingFace/{AniTalker,EchoMimic,EDTalk,FLOAT,IP_LAP,Real3DPortrait,SadTalker}/*.mp4
+├── videos/                           # used by Sec. 5.7, Sec. 6.4 and DeepFakesON-Phys
+│   ├── real/*.mp4                    #   copy or symlink of Celeb-DF-v3/Celeb-real
+│   └── fake/<method>/*.mp4           #   copy or symlink of Celeb-DF-v3/Celeb-synthesis/TalkingFace/<method>
+└── waveforms/                        # written by the scripts
+    ├── CelebDF/TalkingFace/<method>/*.npy
+    ├── CelebDF/Celeb-real/*.npy
+    └── real -> CelebDF/Celeb-real    # 01_build_split.py reads waveforms/real (see note below)
 ```
 
-This produces one `.npy` waveform file per fake video and stride-60 windowed waveforms for real videos.
+> **Note on `waveforms/real`.** The real-video waveforms used in the paper were written to `waveforms/real/` by the original extraction script of the first version (tag `v1-17500`, `src/extract_waveforms.py`). `00_extract_waveforms.py` writes the same stride-60 windows to `waveforms/CelebDF/Celeb-real/`. We checked that the two sets are byte-identical on 400 sampled files. Create the symlink `ln -s CelebDF/Celeb-real data/waveforms/real` before building the split.
 
-### Step 2 — Build the subject-independent split
+## Identity split
 
-```bash
-python src/build_split.py \
-  --waveform_dir data/waveforms \
-  --output data/dataset_split.csv
-```
+`splits/identity_split.csv` assigns each of the 59 identities to `train` (41), `val` (9) or `test` (9). The test identities are id0, id4, id6, id11, id13, id16, id23, id27 and id54. `splits/corpus_full59.csv` lists every waveform (2,371 real windows and 20,279 fakes) with its method, identity and split, matching Table 1. `01_build_split.py` writes `data/dataset_split_full59.csv`, which the training scripts read.
 
-Fixed identity assignments:
-- **Test:** id0, id4, id6, id11, id13, id16, id23, id27, id54
-- **Val:** id8, id12, id19, id22, id34, id42, id44, id52, id56
-- **Train:** remaining 41 identities
+## Reproducing the paper
 
-### Step 3 — Run main experiments
+Run from the repository root. Each script writes the JSON named in the last column, and that file is shipped in `results/` for comparison. All training scripts use seeds {42, 7, 123, 999, 2024}.
 
-```bash
-python src/run_experiments.py \
-  --split data/dataset_split.csv \
-  --waveform_dir data/waveforms \
-  --output_dir results/
-```
-
-Reproduces Tables II, III, and IV from the paper (technique isolation, main results, architecture comparison).
-
-### Step 4 — Per-method isolated training
-
-```bash
-python src/per_method_isolated.py \
-  --split data/dataset_split.csv \
-  --waveform_dir data/waveforms \
-  --output results/per_method_isolated.json
-```
-
-Reproduces Table V (per-method AUC, 5 seeds, 1D ResNet vs Transformer).
-
-### Step 5 — Generate figures
-
-```bash
-python src/generate_roc_curves.py --output figures/roc_curves.pdf
-python src/generate_waveform_comparison.py \
-  --waveform_dir data/waveforms \
-  --output figures/waveform_comparison.pdf
-```
-
----
-
-## Main Results
-
-### Overall (18-identity, 5 seeds)
-
-| Method | AUC (mean ± std) | EER |
+| Paper item | Command | Output JSON (shipped) |
 |---|---|---|
-| DeepFakesON-Phys (reproduction) | 0.622 | — |
-| Effort (ICML 2025, SOTA) | 0.830 | — |
-| **Ours — 1D ResNet** | **0.806 ± 0.003** | **27.8%** |
-| Ours — Transformer | 0.789 ± 0.005 | 29.1% |
+| Waveform extraction (Sec. 3.2) | `python scripts/00_extract_waveforms.py` | `data/celebdf_wave_manifest.csv` |
+| Table 1: identity split | `python scripts/01_build_split.py` | `split_full59_summary.json` |
+| Table 2: technique isolation (5-fold StratifiedGroupKFold, seed 42) | `python scripts/table2_technique_isolation.py` then `python scripts/table2_technique_isolation_both.py` | `technique_isolation.json`, `technique_isolation_both.json` |
+| Table 3: ResNet / CNN / Transformer, window and video AUC | `python scripts/table3_main_results.py` | `combined_retrain_video_level.json` |
+| Table 3: DeepFakesON-Phys | `python scripts/table3_deepfakeson_phys.py --dfp-dir <folder with model.onnx>` | `deepfakeson_phys_baseline.json` |
+| Sec. 3.5: Toeplitz 2D CNN | `python scripts/sec35_toeplitz_2d_cnn.py` | `toeplitz_2d_cnn.json` |
+| Sec. 3.5: Toeplitz ViT (18-identity eval; 5-fold CV) | `python scripts/sec35_toeplitz_vit.py`; `python scripts/sec35_toeplitz_vit_cv.py` | `toeplitz_vit.json` |
+| Table 4, Table 5, Sec. 6.2 | `python scripts/table4_table5_phase2.py` | `full59_combined_model.json`, `full59_per_generator_breakdown.json`, `full59_per_method_isolated.json`, per-identity AUCs in `results/logs/phase2_full59.log` |
+| Table 6: leave-one-generator-out | `python scripts/table6_logo.py` | `logo_generalization.json` |
+| Sec. 5.7: 30 fps extraction and split | `python scripts/sec57_extract_waveforms_30fps.py`; `python scripts/sec57_build_split_30fps.py` | `split_30fps_summary.json` |
+| Sec. 5.7: 0.822 → 0.846, per-generator gains | `python scripts/sec57_phase_b_30fps.py` | `phase_b_30fps.json` (also `task4_fps_normalization.json`, see notes) |
+| Sec. 5.7: rate control (0.631 / 0.481 shuffled), 2,225 excluded clips | `python scripts/sec57_fps_confound_control.py` | `fps_confound_control.json` |
+| Sec. 5.7: excluding stretched clips (+0.006, ρ = 1.00) | see notes | `label_and_corpus_audit.json` → `step_3_no_stretched_reeval` |
+| Sec. 6.4: method-label metadata | `python scripts/sec64_method_label_validation.py` (fps, resolution, codec, encoder) | `task3_method_label_validation.json`; level and FLOAT/Real3DPortrait comparison in `label_and_corpus_audit.json` → `step_2_method_label_verification` |
+| Fig. 2: per-method ROC | `python scripts/fig2_roc_curves.py` | `figures/roc_curves.pdf` |
+| Fig. 3: example traces | `python scripts/fig3_waveform_comparison.py` | see notes |
 
-### Per-method (1D ResNet, isolated training)
+### Provenance notes
 
-| Method | AUC (mean ± std) | EER |
-|---|---|---|
-| Real3DPortrait | 0.985 ± 0.001 | ~5.8% |
-| EDTalk | 0.950 ± 0.002 | ~11.1% |
-| SadTalker | 0.946 ± 0.002 | ~13.2% |
-| AniTalker | 0.908 ± 0.003 | ~16.9% |
-| EchoMimic | 0.865 ± 0.003 | ~20.7% |
-| FLOAT | 0.794 ± 0.005 | ~26.2% |
-| IP-LAP | 0.690 ± 0.010 | ~35.2% |
-
----
+- **Two training runs.** Tables 4 and 5, Fig. 2's legend values and the 0.822 baseline in Sec. 5.7 come from the original training run (`table4_table5_phase2.py`, pooled window AUC 0.8215). Table 3 comes from a later retrain with identical data and hyperparameters (`table3_main_results.py`, pooled window AUC 0.8259). That retrain also saved the checkpoints needed for video-level pooling. The two runs differ only by training stochasticity.
+- **Stretched-clip exclusion (Sec. 5.7).** The +0.006 and ρ = 1.00 are recorded in `results/label_and_corpus_audit.json` (`step_3_no_stretched_reeval`). The script that wrote this file is not part of this repository. The analysis evaluated the 5 checkpoints written by `scripts/sec57_task2_retrain_checkpoints.py` (window AUC 0.8256 with all 6,855 eval windows) on the 6,190 eval windows that were not linspace-stretched (0.8314). Its per-generator ρ compares those values with the per-generator AUCs of the original run (Table 4).
+- **Metadata check (Sec. 6.4).** `sec64_method_label_validation.py` produced `task3_method_label_validation.json` (150 videos per method: fps, resolution, codec, encoder, pixel format). The H.264 level values and the extended comparison are in `label_and_corpus_audit.json` (50 videos per method), whose generating script is not included. In that file EchoMimic's encoder field is mixed (`Lavf58.29.100` / `Lavc61.3.100 libx264`), and FLOAT and Real3DPortrait match on every measured field.
+- **Edited result file.** `task4_fps_normalization.json` is shipped because `sec57_fps_confound_control.py` reads it. One section belonging to unrelated work was removed from it; the remaining fields are unchanged. The script that wrote it is not included.
+- **Missing source videos in the 30 fps run.** In our runs, `data/videos/fake` held a working copy in which the source videos of identities id53–id61 were no longer present (2,779 clips, recorded as `missing_source` in `fps_confound_control.json`). Their native-rate waveforms had already been extracted. With the full release these clips will be found, so 30 fps corpus counts will differ.
+- **DeepFakesON-Phys.** `table3_deepfakeson_phys.py` runs an **ONNX conversion of the released `DeepFakesON-Phys_CelebDF_V2.h5` weights** with onnxruntime on CPU. The preprocessing is **re-implemented** following the official `vid_to_deepframes_rawframes.py`: 36×36 face, DeepFrames from normalised temporal differences, RawFrames from normalised appearance, video score = mean frame score. One difference is that the Haar-cascade face box is detected on the first frame and reused for all frames, with a centre-crop fallback. **The script used for the h5 → ONNX conversion was not found and is not included.** Obtain the weights from the official DeepFakesON-Phys repository; we do not redistribute them. The run scored 100 real and 3,171 fake test-identity videos from the `videos/` working copy. Per-video scores were not saved.
+- **Fig. 2.** The curves are 5-seed mean ROC curves, computed by retraining inside the script. The AUC values in the legend are fixed constants taken from Table 4.
+- **Fig. 3.** `fig3_waveform_comparison.py` is the trace-plotting script found with this project. It does **not** reproduce the exact submitted figure, which uses different example clips and styling; that version's source was not found. Treat it as illustrative only.
+- **Fig. 1** (pipeline diagram) is not included because it contains a frame from the dataset.
+- **Path edits only.** Relative to the code that produced the results, the scripts were changed only to make paths configurable (`--data-root`, `--out-dir`, `--rhythmformer-dir`, `--dfp-dir`), to drop the face-swap / face-reenactment / YouTube-real branches from the extraction script, and to rename files. The scripts were not re-run end to end after these edits. They were checked statically: they compile, `--help` works, and referenced paths exist.
 
 ## Citation
 
-If you use this code, please cite:
-
 ```bibtex
-@inproceedings{harraq2027rppg,
-  author={Harraq, Othmane and Aldwairi, Tamer},
-  title={Physiological Signals as a Forensic Modality for Talking-Face Deepfake Detection},
-  booktitle={WACV},
-  year={2027}
+@article{harraq2026pulseguard,
+  title   = {PulseGuard: rPPG-Derived Temporal Signals as a Forensic Modality for Talking-Face Deepfake Detection},
+  author  = {Harraq, Othmane and Aldwairi, Tamer},
+  journal = {arXiv preprint arXiv:2607.21776},
+  year    = {2026}
 }
 ```
 
----
+## Acknowledgements
 
-## License
-
-This code is released for research purposes only. See LICENSE for details.
+[RhythmFormer](https://github.com/zizheng-guo/RhythmFormer), [MediaPipe](https://github.com/google-ai-edge/mediapipe), [DeepFakesON-Phys](https://github.com/BiDAlab/DeepFakesON-Phys) and [Celeb-DF++](https://github.com/OUC-VAS/Celeb-DF-PP).

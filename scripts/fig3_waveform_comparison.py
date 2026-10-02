@@ -10,8 +10,15 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-BASE = Path.home() / "rPPG_Detection"
-DATA = BASE / "data"
+# ── Paths (configurable; see README) ─────────────────────────────────────────
+import argparse as _argparse
+_ap = _argparse.ArgumentParser(description='rPPG waveform comparison figure')
+_ap.add_argument('--data-root', default='data',
+                 help='data folder laid out as described in the README (default: ./data)')
+_ap.add_argument('--out-dir', default='figures', help='folder for the figure (default: ./figures)')
+_args = _ap.parse_args()
+DATA = Path(_args.data_root)
+OUT  = Path(_args.out_dir)
 
 PANELS = [
     (
@@ -21,20 +28,23 @@ PANELS = [
         "",
     ),
     (
-        DATA / "waveforms/fake/IP_LAP__id40_0000_test_id00866_usqvLtEq2qQ.npy",
+        DATA / "waveforms/CelebDF/TalkingFace/IP_LAP/id40_0000_test_id00866_usqvLtEq2qQ.npy",
         "IP-LAP",
         "#c0392b",
         "AUC 0.690",
     ),
     (
-        DATA / "waveforms/fake/Real3DPortrait__id40_0000_test_id00866_usqvLtEq2qQ.npy",
+        DATA / "waveforms/CelebDF/TalkingFace/Real3DPortrait/id40_0000_test_id00866_usqvLtEq2qQ.npy",
         "Real3DPortrait",
         "#1f77b4",
         "AUC 0.985",
     ),
 ]
 
-fig, axes = plt.subplots(3, 1, figsize=(5, 4), sharex=True, facecolor="white", gridspec_kw={"hspace": 0.08})
+fig, axes = plt.subplots(3, 1, figsize=(5, 4), sharex=True,
+                         facecolor="white",
+                         gridspec_kw={"hspace": 0.08})
+
 frames = np.arange(160)
 
 for i, (path, ylabel, color, auc_text) in enumerate(PANELS):
@@ -57,12 +67,15 @@ for i, (path, ylabel, color, auc_text) in enumerate(PANELS):
     ax.spines["right"].set_visible(False)
 
     # AUC annotation top-right
-    ax.text(0.98, 0.90, auc_text, transform=ax.transAxes, fontsize=8, color="gray", ha="right", va="top")
+    ax.text(0.98, 0.90, auc_text, transform=ax.transAxes,
+            fontsize=8, color="gray", ha="right", va="top")
 
 axes[-1].set_xlabel("Frame index", fontsize=10)
 axes[-1].set_xlim(0, 159)
 
 plt.tight_layout()
-fig.savefig(BASE / "waveform_comparison.pdf", format="pdf", bbox_inches="tight")
-fig.savefig(BASE / "waveform_comparison.png", dpi=300, bbox_inches="tight", facecolor="white")
+OUT.mkdir(parents=True, exist_ok=True)
+fig.savefig(OUT / "waveform_comparison.pdf", format="pdf", bbox_inches="tight")
+fig.savefig(OUT / "waveform_comparison.png", dpi=300, bbox_inches="tight",
+            facecolor="white")
 print("Saved")

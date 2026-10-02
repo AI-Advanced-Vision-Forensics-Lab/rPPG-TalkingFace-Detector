@@ -1,0 +1,489 @@
+{
+  "provenance": {
+    "git_commit": "no_git_repo",
+    "timestamp_utc": "2026-08-27T19:47:43.056212Z",
+    "gpu": "Tesla T4",
+    "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]",
+    "input_files": [
+      "data/videos/real",
+      "data/videos/fake/AniTalker",
+      "data/videos/fake/EDTalk",
+      "data/videos/fake/EchoMimic",
+      "data/videos/fake/FLOAT",
+      "data/videos/fake/IP_LAP",
+      "data/videos/fake/Real3DPortrait",
+      "data/videos/fake/SadTalker",
+      "data/waveforms/CelebDF_30fps/extraction_log.csv",
+      "src/extract_waveforms_celebdf.py",
+      "src/extract_waveforms_30fps.py",
+      "~/RhythmFormer/PreTrainedModels/UBFC_cross_RhythmFormer.pth",
+      "data/blaze_face_short_range.tflite",
+      "data/waveforms/real",
+      "data/dataset_split_full59.csv",
+      "data/results/split_full59_summary.json",
+      "data/results/phase_b_30fps.json",
+      "data/results/task4_fps_normalization.json"
+    ]
+  },
+  "step1_metadata": {
+    "status": "OK",
+    "per_class": {
+      "real": {
+        "n_probed": 200,
+        "fps_counts": {
+          "28.76": 1,
+          "29.0": 2,
+          "29.7": 1,
+          "29.8": 1,
+          "29.9": 1,
+          "30.0": 194
+        },
+        "modal_fps": 30.0,
+        "duration_s": {
+          "min": 0.03,
+          "median": 12.1,
+          "max": 21.0
+        },
+        "nb_frames": {
+          "min": 1,
+          "median": 363,
+          "max": 630
+        },
+        "resolution_codec_counts": {
+          "(30.0, 856, 478, 'mpeg4')": 46,
+          "(30.0, 942, 500, 'mpeg4')": 28,
+          "(30.0, 850, 472, 'mpeg4')": 17,
+          "(30.0, 848, 466, 'mpeg4')": 11,
+          "(30.0, 834, 458, 'mpeg4')": 6
+        },
+        "dominant_resolution": "856x478",
+        "dominant_codec": "mpeg4"
+      },
+      "AniTalker": {
+        "n_probed": 150,
+        "fps_counts": {
+          "25.0": 150
+        },
+        "modal_fps": 25.0,
+        "duration_s": {
+          "min": 5.04,
+          "median": 6.64,
+          "max": 14.4
+        },
+        "nb_frames": {
+          "min": 126,
+          "median": 166,
+          "max": 360
+        },
+        "resolution_codec_counts": {
+          "(25.0, 256, 256, 'h264')": 150
+        },
+        "dominant_resolution": "256x256",
+        "dominant_codec": "h264"
+      },
+      "EDTalk": {
+        "n_probed": 150,
+        "fps_counts": {
+          "25.0": 150
+        },
+        "modal_fps": 25.0,
+        "duration_s": {
+          "min": 4.96,
+          "median": 6.6,
+          "max": 14.4
+        },
+        "nb_frames": {
+          "min": 124,
+          "median": 165,
+          "max": 360
+        },
+        "resolution_codec_counts": {
+          "(25.0, 256, 256, 'h264')": 150
+        },
+        "dominant_resolution": "256x256",
+        "dominant_codec": "h264"
+      },
+      "EchoMimic": {
+        "n_probed": 150,
+        "fps_counts": {
+          "24.0": 150
+        },
+        "modal_fps": 24.0,
+        "duration_s": {
+          "min": 5.04,
+          "median": 6.75,
+          "max": 15.04
+        },
+        "nb_frames": {
+          "min": 121,
+          "median": 162,
+          "max": 361
+        },
+        "resolution_codec_counts": {
+          "(24.0, 512, 512, 'h264')": 150
+        },
+        "dominant_resolution": "512x512",
+        "dominant_codec": "h264"
+      },
+      "FLOAT": {
+        "n_probed": 150,
+        "fps_counts": {
+          "25.0": 150
+        },
+        "modal_fps": 25.0,
+        "duration_s": {
+          "min": 5.0,
+          "median": 6.6,
+          "max": 14.4
+        },
+        "nb_frames": {
+          "min": 125,
+          "median": 165,
+          "max": 360
+        },
+        "resolution_codec_counts": {
+          "(25.0, 512, 512, 'h264')": 150
+        },
+        "dominant_resolution": "512x512",
+        "dominant_codec": "h264"
+      },
+      "IP_LAP": {
+        "n_probed": 150,
+        "fps_counts": {
+          "25.0": 150
+        },
+        "modal_fps": 25.0,
+        "duration_s": {
+          "min": 4.84,
+          "median": 6.52,
+          "max": 14.76
+        },
+        "nb_frames": {
+          "min": 121,
+          "median": 163,
+          "max": 369
+        },
+        "resolution_codec_counts": {
+          "(25.0, 256, 256, 'h264')": 150
+        },
+        "dominant_resolution": "256x256",
+        "dominant_codec": "h264"
+      },
+      "Real3DPortrait": {
+        "n_probed": 150,
+        "fps_counts": {
+          "25.0": 150
+        },
+        "modal_fps": 25.0,
+        "duration_s": {
+          "min": 5.12,
+          "median": 6.64,
+          "max": 15.04
+        },
+        "nb_frames": {
+          "min": 128,
+          "median": 166,
+          "max": 376
+        },
+        "resolution_codec_counts": {
+          "(25.0, 512, 512, 'h264')": 150
+        },
+        "dominant_resolution": "512x512",
+        "dominant_codec": "h264"
+      },
+      "SadTalker": {
+        "n_probed": 150,
+        "fps_counts": {
+          "25.0": 150
+        },
+        "modal_fps": 25.0,
+        "duration_s": {
+          "min": 4.96,
+          "median": 6.56,
+          "max": 14.4
+        },
+        "nb_frames": {
+          "min": 124,
+          "median": 164,
+          "max": 360
+        },
+        "resolution_codec_counts": {
+          "(25.0, 256, 256, 'h264')": 134,
+          "(25.0, 256, 272, 'h264')": 14,
+          "(25.0, 256, 224, 'h264')": 1,
+          "(25.0, 256, 240, 'h264')": 1
+        },
+        "dominant_resolution": "256x256",
+        "dominant_codec": "h264"
+      }
+    },
+    "fingerprints": {
+      "AniTalker": [
+        25.0,
+        "256x256",
+        "h264"
+      ],
+      "EDTalk": [
+        25.0,
+        "256x256",
+        "h264"
+      ],
+      "EchoMimic": [
+        24.0,
+        "512x512",
+        "h264"
+      ],
+      "FLOAT": [
+        25.0,
+        "512x512",
+        "h264"
+      ],
+      "IP_LAP": [
+        25.0,
+        "256x256",
+        "h264"
+      ],
+      "Real3DPortrait": [
+        25.0,
+        "512x512",
+        "h264"
+      ],
+      "SadTalker": [
+        25.0,
+        "256x256",
+        "h264"
+      ],
+      "real": [
+        30.0,
+        "856x478",
+        "mpeg4"
+      ]
+    },
+    "claim_real_30fps": true,
+    "claim_echomimic_24fps": true,
+    "claim_others_25fps": true,
+    "claim_four_share_fingerprint": true,
+    "sharing_groups": {
+      "(25.0, '256x256', 'h264')": [
+        "AniTalker",
+        "EDTalk",
+        "IP_LAP",
+        "SadTalker"
+      ],
+      "(25.0, '512x512', 'h264')": [
+        "FLOAT",
+        "Real3DPortrait"
+      ]
+    },
+    "overlapping_pairs": [
+      [
+        "AniTalker",
+        "EDTalk"
+      ],
+      [
+        "AniTalker",
+        "IP_LAP"
+      ],
+      [
+        "AniTalker",
+        "SadTalker"
+      ],
+      [
+        "EDTalk",
+        "IP_LAP"
+      ],
+      [
+        "EDTalk",
+        "SadTalker"
+      ],
+      [
+        "IP_LAP",
+        "SadTalker"
+      ],
+      [
+        "FLOAT",
+        "Real3DPortrait"
+      ]
+    ],
+    "runtime_s": 89.9
+  },
+  "step2_dropped_clips": {
+    "status": "OK",
+    "log_status_counts_30fps": {
+      "ok": 15275,
+      "missing_source": 2779,
+      "too_short": 2225
+    },
+    "n_too_short": 2225,
+    "n_missing_source": 2779,
+    "n_ok_30fps": 15275,
+    "total_log_entries": 20279,
+    "threshold_unit": "native_frames_before_resampling",
+    "threshold_formula": "ceil(160 * fps_native / 30)",
+    "threshold_25fps": 134,
+    "threshold_24fps": 128,
+    "dropped_native_frames_distribution": {
+      "min": 121.0,
+      "median": 128.0,
+      "max": 133.0,
+      "percentiles": {
+        "10": 124.0,
+        "25": 125.0,
+        "50": 128.0,
+        "75": 130.0,
+        "90": 132.0
+      }
+    },
+    "hypothetical_resampled_frames": {
+      "min": 145.0,
+      "max": 160.0,
+      "all_below_160": false
+    },
+    "linspace_active_native_fakes": true,
+    "linspace_active_30fps_fakes": false,
+    "three_way_confound": true,
+    "three_confounds": [
+      "1. Frame-rate alignment: native run uses native fps, 30fps run resamples to 30fps",
+      "2. Corpus subset: 30fps run drops 5,004 clips (too_short or missing source), native run includes them via linspace",
+      "3. Interpolation policy: native run linspace-stretches fakes with n<160 frames; 30fps run drops fakes with n<ceil(160*fps/30)"
+    ],
+    "explanation": "The 5,004 dropped clips have FEWER native frames than the resampling threshold, not more. Resampling 25fps\u219230fps requires the source to have at least ceil(160*25/30)=134 native frames to fill a 160-frame window. The dropped clips have 121-133 native frames (median 128). In the native run, these same clips were INCLUDED via np.linspace interpolation (extract_waveforms_celebdf.py line 208). So the 0.822 vs 0.846 comparison differs in THREE ways, not two: rate, corpus subset, and interpolation policy."
+  },
+  "step3_control": {
+    "status": "OK",
+    "min_native_frames_for_25fps": 192,
+    "fps_source": 30.0,
+    "fps_target": 25.0,
+    "resampling_formula": "k_i = round(i * fps_source / fps_target) = round(i * 30/25)",
+    "n_source_stems": 579,
+    "n_25fps_ok": 574,
+    "n_25fps_too_short": 5,
+    "n_25fps_fail": 0,
+    "n_stems_with_both": 574,
+    "dataset": {
+      "total_windows": 1148,
+      "n_30fps_label0": 574,
+      "n_25fps_label1": 574,
+      "n_train": 804,
+      "n_eval_18id": 344,
+      "pos_weight": 1.0,
+      "balance_seed": 42
+    },
+    "seed_results": [
+      {
+        "seed": 42,
+        "auc": 0.6662,
+        "eer": 0.3692
+      },
+      {
+        "seed": 7,
+        "auc": 0.6484,
+        "eer": 0.3808
+      },
+      {
+        "seed": 123,
+        "auc": 0.5942,
+        "eer": 0.436
+      },
+      {
+        "seed": 999,
+        "auc": 0.6239,
+        "eer": 0.3779
+      },
+      {
+        "seed": 2024,
+        "auc": 0.6242,
+        "eer": 0.4128
+      }
+    ],
+    "mean_auc_18id": 0.6314,
+    "std_auc_18id": 0.0245,
+    "mean_eer_18id": 0.3953,
+    "shuffled_label_auc": 0.481,
+    "pipeline_leak_detected": false,
+    "interpretation": {
+      "control_mean_auc": 0.6314,
+      "shuffled_auc": 0.481,
+      "ratio_vs_0822": 0.408,
+      "reference_real_vs_fake_auc": 0.822
+    },
+    "wave_25fps_dir": "data/waveforms/real_25fps"
+  },
+  "step4_spectral": {
+    "status": "OK",
+    "n_eval_real": 696,
+    "n_eval_fake": 6159,
+    "median_dominant_freq_cpf": {
+      "real": 0.0625,
+      "AniTalker": 0.0625,
+      "EDTalk": 0.0625,
+      "EchoMimic": 0.078125,
+      "FLOAT": 0.0625,
+      "IP_LAP": 0.0625,
+      "Real3DPortrait": 0.03125,
+      "SadTalker": 0.0625,
+      "pooled_fake": 0.0625
+    },
+    "ratio_real_to_pooled_fake": 1.0,
+    "expected_ratio_if_fps_driven": 0.8333,
+    "psd_logistic_regression_auc": 0.7196,
+    "n_psd_bins": 32,
+    "note": "All frequencies in cycles-per-frame (cpf). Dominant freq computed via Welch PSD in physiological band 0.020-0.140 cpf.",
+    "runtime_s": 35.9
+  },
+  "step5_ranking": {
+    "status": "OK",
+    "source_files": [
+      "data/results/phase_b_30fps.json",
+      "data/results/task4_fps_normalization.json"
+    ],
+    "per_generator": [
+      {
+        "method": "AniTalker",
+        "native_auc": 0.8663,
+        "fps30_auc": 0.8906,
+        "delta": 0.0243
+      },
+      {
+        "method": "EDTalk",
+        "native_auc": 0.9029,
+        "fps30_auc": 0.9144,
+        "delta": 0.0115
+      },
+      {
+        "method": "EchoMimic",
+        "native_auc": 0.7577,
+        "fps30_auc": 0.7727,
+        "delta": 0.015
+      },
+      {
+        "method": "FLOAT",
+        "native_auc": 0.7874,
+        "fps30_auc": 0.7974,
+        "delta": 0.01
+      },
+      {
+        "method": "IP_LAP",
+        "native_auc": 0.6173,
+        "fps30_auc": 0.7044,
+        "delta": 0.0871
+      },
+      {
+        "method": "Real3DPortrait",
+        "native_auc": 0.9367,
+        "fps30_auc": 0.9414,
+        "delta": 0.0047
+      },
+      {
+        "method": "SadTalker",
+        "native_auc": 0.8895,
+        "fps30_auc": 0.8935,
+        "delta": 0.004
+      }
+    ],
+    "all_generators_improve": true,
+    "spearman_rho": 1.0,
+    "spearman_p": 0.0,
+    "note": "Values read directly from phase_b_30fps.json and task4_fps_normalization.json. No recomputation."
+  }
+}

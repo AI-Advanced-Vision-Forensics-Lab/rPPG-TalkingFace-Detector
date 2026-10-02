@@ -1,0 +1,142 @@
+{
+  "experiment": "toeplitz_vit",
+  "step_0_prior_search": {
+    "implementation_found": true,
+    "location": "src/run_experiments.py class ToeplitzViT lines 135-157",
+    "also_found_in": "src/per_method_full_experiments.py",
+    "prior_result_note": "hp_tuning.json Toeplitz ViT entries are per-method HP sweep scores (not 59-id combined 18-id eval). No prior 18-id combined eval result existed."
+  },
+  "step_1_implementation": {
+    "source_file": "src/run_experiments.py (reused verbatim)",
+    "input_normalization": "per-window z-score (paper Eq.2), same as 1D ResNet",
+    "toeplitz_construction": "T[i,j]=x_zscore[|i-j|] (paper Eq.4)",
+    "architecture": {
+      "input": "1x160x160",
+      "patch_size": 16,
+      "n_patches": 100,
+      "d_model": 64,
+      "nhead": 4,
+      "num_layers": 2,
+      "mlp_dim": 128,
+      "activation": "gelu",
+      "norm": "pre-layer-norm (norm_first=True)",
+      "cls_token": true,
+      "positional_embeddings": "learned",
+      "dropout": 0.5
+    },
+    "actual_params": 90113,
+    "paper_claimed_params": "~90K",
+    "params_claim_correct": true,
+    "params_claim_note": "Actual 90,113 approx 90K. TRUE."
+  },
+  "step_2_protocol": {
+    "matched_from": "data/results/toeplitz_2d_cnn.json",
+    "protocol": {
+      "optimizer": "AdamW",
+      "lr": 0.001,
+      "wd": 0.0005,
+      "dropout": 0.5,
+      "epochs": 30,
+      "batch": 64,
+      "pos_weight": "n_real_train/n_fake_train",
+      "seeds": [
+        42,
+        7,
+        123,
+        999,
+        2024
+      ],
+      "eval": "18-identity (val+test)",
+      "cv": "5-fold KFold on training identities, random_state=42"
+    }
+  },
+  "step_3_18id_eval": {
+    "n_train_real": 1675,
+    "n_train_fake": 14120,
+    "n_eval_real": 696,
+    "n_eval_fake": 6159,
+    "pos_weight": 0.118626,
+    "eval_ids": [
+      "id0",
+      "id4",
+      "id6",
+      "id8",
+      "id11",
+      "id12",
+      "id13",
+      "id16",
+      "id19",
+      "id22",
+      "id23",
+      "id27",
+      "id34",
+      "id42",
+      "id44",
+      "id52",
+      "id54",
+      "id56"
+    ],
+    "seed_results": [
+      {
+        "seed": 42,
+        "auc_18id": 0.7548,
+        "eer_18id": 0.3175
+      },
+      {
+        "seed": 7,
+        "auc_18id": 0.7643,
+        "eer_18id": 0.3109
+      },
+      {
+        "seed": 123,
+        "auc_18id": 0.75,
+        "eer_18id": 0.3212
+      },
+      {
+        "seed": 999,
+        "auc_18id": 0.7646,
+        "eer_18id": 0.3001
+      },
+      {
+        "seed": 2024,
+        "auc_18id": 0.7528,
+        "eer_18id": 0.3159
+      }
+    ],
+    "mean_auc_18id": 0.7573,
+    "std_auc_18id": 0.006,
+    "mean_eer_18id": 0.3131,
+    "comparison": {
+      "1d_resnet_18id": 0.8215,
+      "toeplitz_2d_cnn_18id": 0.7724,
+      "toeplitz_vit_18id": 0.7573
+    }
+  },
+  "step_3_cv_5fold": {
+    "cv_fold_aucs": [
+      0.767,
+      0.7118,
+      0.7484,
+      0.7049,
+      0.761
+    ],
+    "cv_mean_auc": 0.7386,
+    "cv_std_auc": 0.0255,
+    "toeplitz_2d_cnn_cv": 0.75,
+    "paper_claimed_vit_cv": 0.752,
+    "paper_claim_within_0.01_of_cv": false
+  },
+  "step_4_sanity": {
+    "shuffled_label_auc_seed42": 0.4902,
+    "pipeline_leak_detected": false
+  },
+  "provenance": {
+    "timestamp_utc": "2026-08-27T21:22:26.764985Z",
+    "gpu": "Tesla T4",
+    "input_files": [
+      "data/dataset_split_full59.csv",
+      "data/results/toeplitz_2d_cnn.json",
+      "src/run_experiments.py"
+    ]
+  }
+}

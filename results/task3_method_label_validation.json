@@ -1,0 +1,475 @@
+{
+  "experiment": "method_label_validation",
+  "n_sample_per_method": 150,
+  "per_method": {
+    "AniTalker": {
+      "n_probed": 150,
+      "resolution": {
+        "256x256": 150
+      },
+      "fps": {
+        "25.0": 150
+      },
+      "codec": {
+        "h264": 150
+      },
+      "encoder": {
+        "Lavc61.3.100 libx264": 150
+      },
+      "pix_fmt": {
+        "yuv420p": 150
+      },
+      "file_bytes": {
+        "mean": 189624.26,
+        "std": 57951.47,
+        "min": 113659.0,
+        "max": 369421.0,
+        "p25": 144145.0,
+        "p75": 215212.5
+      },
+      "nb_frames": {
+        "mean": 185.66,
+        "std": 53.92,
+        "min": 126.0,
+        "max": 360.0,
+        "p25": 143.0,
+        "p75": 210.5
+      }
+    },
+    "EDTalk": {
+      "n_probed": 150,
+      "resolution": {
+        "256x256": 150
+      },
+      "fps": {
+        "25.0": 150
+      },
+      "codec": {
+        "h264": 150
+      },
+      "encoder": {
+        "Lavf58.76.100": 150
+      },
+      "pix_fmt": {
+        "yuv420p": 150
+      },
+      "file_bytes": {
+        "mean": 996333.79,
+        "std": 315652.78,
+        "min": 649426.0,
+        "max": 1951553.0,
+        "p25": 751232.0,
+        "p75": 1171769.25
+      },
+      "nb_frames": {
+        "mean": 188.53,
+        "std": 57.81,
+        "min": 124.0,
+        "max": 360.0,
+        "p25": 142.5,
+        "p75": 223.0
+      }
+    },
+    "EchoMimic": {
+      "n_probed": 150,
+      "resolution": {
+        "512x512": 150
+      },
+      "fps": {
+        "24.0": 150
+      },
+      "codec": {
+        "h264": 150
+      },
+      "encoder": {
+        "Lavf58.29.100": 77,
+        "Lavc61.3.100 libx264": 73
+      },
+      "pix_fmt": {
+        "yuv420p": 150
+      },
+      "file_bytes": {
+        "mean": 453448.19,
+        "std": 147566.11,
+        "min": 267592.0,
+        "max": 1030252.0,
+        "p25": 341804.25,
+        "p75": 527465.75
+      },
+      "nb_frames": {
+        "mean": 181.8,
+        "std": 56.65,
+        "min": 121.0,
+        "max": 361.0,
+        "p25": 136.5,
+        "p75": 217.75
+      }
+    },
+    "FLOAT": {
+      "n_probed": 150,
+      "resolution": {
+        "512x512": 150
+      },
+      "fps": {
+        "25.0": 150
+      },
+      "codec": {
+        "h264": 150
+      },
+      "encoder": {
+        "Lavf58.76.100": 150
+      },
+      "pix_fmt": {
+        "yuv420p": 150
+      },
+      "file_bytes": {
+        "mean": 991175.31,
+        "std": 303784.28,
+        "min": 648538.0,
+        "max": 1964512.0,
+        "p25": 758656.75,
+        "p75": 1119376.5
+      },
+      "nb_frames": {
+        "mean": 185.6,
+        "std": 54.25,
+        "min": 125.0,
+        "max": 360.0,
+        "p25": 143.0,
+        "p75": 211.5
+      }
+    },
+    "IP_LAP": {
+      "n_probed": 150,
+      "resolution": {
+        "256x256": 150
+      },
+      "fps": {
+        "25.0": 150
+      },
+      "codec": {
+        "h264": 150
+      },
+      "encoder": {
+        "Lavf58.76.100": 150
+      },
+      "pix_fmt": {
+        "yuv420p": 150
+      },
+      "file_bytes": {
+        "mean": 186556.65,
+        "std": 62377.78,
+        "min": 97423.0,
+        "max": 394482.0,
+        "p25": 140569.75,
+        "p75": 218060.25
+      },
+      "nb_frames": {
+        "mean": 185.91,
+        "std": 60.64,
+        "min": 121.0,
+        "max": 369.0,
+        "p25": 137.0,
+        "p75": 220.75
+      }
+    },
+    "Real3DPortrait": {
+      "n_probed": 150,
+      "resolution": {
+        "512x512": 150
+      },
+      "fps": {
+        "25.0": 150
+      },
+      "codec": {
+        "h264": 150
+      },
+      "encoder": {
+        "Lavf58.76.100": 150
+      },
+      "pix_fmt": {
+        "yuv420p": 150
+      },
+      "file_bytes": {
+        "mean": 229978.38,
+        "std": 66120.83,
+        "min": 142539.0,
+        "max": 507154.0,
+        "p25": 178283.75,
+        "p75": 268405.75
+      },
+      "nb_frames": {
+        "mean": 182.03,
+        "std": 49.23,
+        "min": 128.0,
+        "max": 376.0,
+        "p25": 148.0,
+        "p75": 211.0
+      }
+    },
+    "SadTalker": {
+      "n_probed": 150,
+      "resolution": {
+        "256x256": 134,
+        "256x272": 14,
+        "256x224": 1,
+        "256x240": 1
+      },
+      "fps": {
+        "25.0": 150
+      },
+      "codec": {
+        "h264": 150
+      },
+      "encoder": {
+        "Lavf60.16.100": 150
+      },
+      "pix_fmt": {
+        "yuv420p": 150
+      },
+      "file_bytes": {
+        "mean": 124528.87,
+        "std": 36814.85,
+        "min": 73486.0,
+        "max": 255117.0,
+        "p25": 97394.75,
+        "p75": 142988.0
+      },
+      "nb_frames": {
+        "mean": 184.76,
+        "std": 54.32,
+        "min": 124.0,
+        "max": 360.0,
+        "p25": 142.0,
+        "p75": 210.5
+      }
+    },
+    "real": {
+      "n_probed": 150,
+      "resolution": {
+        "942x500": 20,
+        "950x500": 19,
+        "846x476": 14,
+        "952x500": 6,
+        "894x500": 5
+      },
+      "fps": {
+        "30.0": 142,
+        "29.833": 3,
+        "29.583": 2,
+        "29.667": 2,
+        "28.75": 1
+      },
+      "codec": {
+        "mpeg4": 150
+      },
+      "encoder": {
+        "Lavf58.3.100": 150
+      },
+      "pix_fmt": {
+        "yuv420p": 150
+      },
+      "file_bytes": {
+        "mean": 1354666.4,
+        "std": 636444.74,
+        "min": 350646.0,
+        "max": 4404080.0,
+        "p25": 918913.0,
+        "p75": 1660216.75
+      },
+      "nb_frames": {
+        "mean": 341.13,
+        "std": 74.89,
+        "min": 145.0,
+        "max": 535.0,
+        "p25": 310.0,
+        "p75": 363.75
+      }
+    }
+  },
+  "fps_by_method": {
+    "AniTalker": 25.0,
+    "EDTalk": 25.0,
+    "EchoMimic": 24.0,
+    "FLOAT": 25.0,
+    "IP_LAP": 25.0,
+    "Real3DPortrait": 25.0,
+    "SadTalker": 25.0,
+    "real": 29.98
+  },
+  "resolution_dominant": {
+    "AniTalker": "256x256",
+    "EDTalk": "256x256",
+    "EchoMimic": "512x512",
+    "FLOAT": "512x512",
+    "IP_LAP": "256x256",
+    "Real3DPortrait": "512x512",
+    "SadTalker": "256x256",
+    "real": "942x500"
+  },
+  "mean_frames_by_method": {
+    "AniTalker": 185.7,
+    "EDTalk": 188.5,
+    "EchoMimic": 181.8,
+    "FLOAT": 185.6,
+    "IP_LAP": 185.9,
+    "Real3DPortrait": 182.0,
+    "SadTalker": 184.8,
+    "real": 341.1
+  },
+  "codec_by_method": {
+    "AniTalker": [
+      [
+        "h264",
+        150
+      ]
+    ],
+    "EDTalk": [
+      [
+        "h264",
+        150
+      ]
+    ],
+    "EchoMimic": [
+      [
+        "h264",
+        150
+      ]
+    ],
+    "FLOAT": [
+      [
+        "h264",
+        150
+      ]
+    ],
+    "IP_LAP": [
+      [
+        "h264",
+        150
+      ]
+    ],
+    "Real3DPortrait": [
+      [
+        "h264",
+        150
+      ]
+    ],
+    "SadTalker": [
+      [
+        "h264",
+        150
+      ]
+    ],
+    "real": [
+      [
+        "mpeg4",
+        150
+      ]
+    ]
+  },
+  "separability": {
+    "fps_separates_generators": true,
+    "fps_groups": {
+      "25": [
+        "AniTalker",
+        "EDTalk",
+        "FLOAT",
+        "IP_LAP",
+        "Real3DPortrait",
+        "SadTalker"
+      ],
+      "24": [
+        "EchoMimic"
+      ],
+      "30": [
+        "real"
+      ]
+    },
+    "resolution_separates_generators": true,
+    "resolution_groups": {
+      "256x256": [
+        "AniTalker",
+        "EDTalk",
+        "IP_LAP",
+        "SadTalker"
+      ],
+      "512x512": [
+        "EchoMimic",
+        "FLOAT",
+        "Real3DPortrait"
+      ],
+      "942x500": [
+        "real"
+      ]
+    },
+    "n_unique_combos_fps_res_codec": 3,
+    "cleanly_separable": false,
+    "combo_per_method": {
+      "AniTalker": [
+        25.0,
+        "256x256",
+        "h264"
+      ],
+      "EDTalk": [
+        25.0,
+        "256x256",
+        "h264"
+      ],
+      "EchoMimic": [
+        24.0,
+        "512x512",
+        "h264"
+      ],
+      "FLOAT": [
+        25.0,
+        "512x512",
+        "h264"
+      ],
+      "IP_LAP": [
+        25.0,
+        "256x256",
+        "h264"
+      ],
+      "Real3DPortrait": [
+        25.0,
+        "512x512",
+        "h264"
+      ],
+      "SadTalker": [
+        25.0,
+        "256x256",
+        "h264"
+      ]
+    },
+    "overlapping_pairs": [
+      [
+        "AniTalker",
+        "EDTalk"
+      ],
+      [
+        "AniTalker",
+        "IP_LAP"
+      ],
+      [
+        "AniTalker",
+        "SadTalker"
+      ],
+      [
+        "EDTalk",
+        "IP_LAP"
+      ],
+      [
+        "EDTalk",
+        "SadTalker"
+      ],
+      [
+        "FLOAT",
+        "Real3DPortrait"
+      ],
+      [
+        "IP_LAP",
+        "SadTalker"
+      ]
+    ]
+  }
+}

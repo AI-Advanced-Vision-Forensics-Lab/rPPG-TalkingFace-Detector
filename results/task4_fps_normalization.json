@@ -1,0 +1,88 @@
+{
+  "experiment": "fps_normalization_control",
+  "protocol": {
+    "real_fps": 30,
+    "fake_fps_typical": 25,
+    "echomimic_fps": 24,
+    "method": "nearest-neighbor frame selection to 30fps grid",
+    "drop_condition": "source video < 160 frames after 30fps resampling"
+  },
+  "corpus_counts": {
+    "native_fps": {
+      "train_real": 1675,
+      "train_fake": 14120,
+      "eval_real": 696,
+      "eval_fake": 6159
+    },
+    "fps30_norm": {
+      "train_real": 1675,
+      "train_fake": 10387,
+      "eval_real": 696,
+      "eval_fake": 4888
+    },
+    "dropped": {
+      "train_real": 0,
+      "train_fake": 3733,
+      "eval_real": 0,
+      "eval_fake": 1271
+    }
+  },
+  "rhythmformer_1d_resnet": {
+    "native_fps": {
+      "mean_auc_18id": 0.8215,
+      "std_auc_18id": 0.0052,
+      "mean_auc_9id": 0.8262,
+      "std_auc_9id": 0.0043
+    },
+    "fps30_norm": {
+      "mean_auc": 0.8463,
+      "std_auc": 0.0027,
+      "delta_vs_native": 0.0247,
+      "seed_aucs": [
+        0.8471,
+        0.8442,
+        0.8512,
+        0.8448,
+        0.8439
+      ]
+    },
+    "per_generator_native": {
+      "AniTalker": 0.8663,
+      "EDTalk": 0.9029,
+      "EchoMimic": 0.7577,
+      "FLOAT": 0.7874,
+      "IP_LAP": 0.6173,
+      "Real3DPortrait": 0.9367,
+      "SadTalker": 0.8895
+    },
+    "per_generator_30fps": {
+      "AniTalker": 0.8906,
+      "EDTalk": 0.9144,
+      "EchoMimic": 0.7727,
+      "FLOAT": 0.7974,
+      "IP_LAP": 0.7044,
+      "Real3DPortrait": 0.9414,
+      "SadTalker": 0.8935
+    }
+  },
+  "eval_ids": [
+    "id0",
+    "id4",
+    "id6",
+    "id8",
+    "id11",
+    "id12",
+    "id13",
+    "id16",
+    "id19",
+    "id22",
+    "id23",
+    "id27",
+    "id34",
+    "id42",
+    "id44",
+    "id52",
+    "id54",
+    "id56"
+  ]
+}
